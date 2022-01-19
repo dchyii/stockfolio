@@ -16,25 +16,25 @@ StockFolio is a React application. Users will search for any particular stocks t
 ### Wireframes
 
 - Template
-  ![Template]()
+  ![Template](/misc/wireframes/template.png)
 
 - Homepage
-  ![Home Page]()
+  ![Home Page](/misc/wireframes/HomePage.png)
 
 - Search Results
-  ![Search Result]()
+  ![Search Result](/misc/wireframes/SearchResults.png)
 
 - Add to Portfolio component
-  ![Add To Portfolio]()
+  ![Add To Portfolio](/misc/wireframes/Add.png)
 
 - Watch List
-  ![Watch List]()
+  ![Watch List](/misc/wireframes/WatchList.png)
 
 - Portfolio
-  ![Portfolio]()
+  ![Portfolio](/misc/wireframes/Portfolio.png)
 
 - Contact
-  ![Contact]()
+  ![Contact](/misc/wireframes/Contact.png)
 
 ### User Stories
 
