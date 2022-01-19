@@ -38,33 +38,103 @@ StockFolio is a React application. Users will search for any particular stocks t
 
 ### User Stories
 
-- Home Page
+**Home Page**
 
-- Search Results
+1. The user should be able to search for any stocks by their tikcer symbol.
+2. Upon search, the user should be directed to the Search Results page.
 
-- Add to Watch List
+**Search Results**
 
-- Add to Portfolio
+1. The user should see the name, symbol, previous close price and description of the company that he/she has searched for.
+2. The user should see a list of news related to the company.
+3. The user should be able to add the company to his/her wish list.
+4. The user should be able to add the company to his/her portfolio via the "Add to portfolio" component.
 
-- Watch List
+**Add to Portfolio**
 
-- Portfolio
+1. The user should be able to enter the number of units, the purchase price and purchase date for the stock.
+2. The user should be able to click on the Add button to add the information into his/her portfolio.
+3. The user should be able to cancel the transaction or close the component.
+
+**Watch List**
+
+1. The user should be able to see the information of the stocks in his/her watchlist.
+2. The user should be able to remove a stock from his/her watchlist.
+3. The user should be able to search for a new stock from the watchlist page.
+
+**Portfolio**
+
+1. The user should be able to see a summary of all the stocks in his/her portfolio..
+2. The user should be able to see detailed information of a stock in his/her portfolio after clicking on it.
+3. The user should be able to search for a new stock from the portfolio page.
 
 ---
 
 ## Planning and Development Process
 
-- Home Page
+## Data structure
 
-- Search Results
+**App**
+Data:
 
-- Add to Watch List
+1. watchlist: [symbol1, symbol2, symbol3]
+2. portfolio: {
+   symbol1: {
+   symbol: "",
+   name: "",
+   buyDate: "",
+   buyPrice: 0,
+   buyUnits: 0,
+   }
+   }
+   **Home Page**
+   URL: /
+   Components:
 
-- Add to Portfolio
+3. SearchBar
 
-- Watch List
+**Search Results**
 
-- Portfolio
+- URL: /search/:symbol
+- Components:
+
+1. SearchBar
+2. BigInfoCard
+3. NewsCard
+4. AddStock (hidden)
+
+- Props
+
+1. Name
+2. Symbol
+
+**Add to Portfolio**
+URL: NA
+Components: NA
+
+**Watch List**
+URL: /watchlist/:symbol
+Components:
+
+1. SearchBar
+2. DetailedStock
+
+**Portfolio**
+URL: /portfolio/:symbol
+Components:
+
+1. SearchBar
+2. SummaryStock
+3. SmallInfoCard
+
+- Props
+
+1. Name
+2. Symbol
+3. Other stock info
+
+**Contact**
+URL: /contact
 
 ### Problem-Solving Strategy
 
