@@ -174,7 +174,7 @@ URL: /contact
 
 ## APIs Used
 
-- 
+- https://polygon.io/docs/stocks/getting-started
 
 ## Acknowledgments
 
