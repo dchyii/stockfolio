@@ -74,7 +74,10 @@ StockFolio is a React application. Users will search for any particular stocks t
 
 ## Data structure
 
+---
+
 **App**
+
 Data:
 
 1. watchlist: [symbol1, symbol2, symbol3]
@@ -87,54 +90,79 @@ Data:
    buyUnits: 0,
    }
    }
-   **Home Page**
-   URL: /
-   Components:
 
-3. SearchBar
+---
+
+**Home Page**
+
+URL: /
+
+Components: NA
+
+1. SearchBar
+
+---
 
 **Search Results**
 
-- URL: /search/:symbol
-- Components:
+URL: /search/:symbol
+
+Components:
 
 1. SearchBar
 2. BigInfoCard
 3. NewsCard
 4. AddStock (hidden)
 
-- Props
+Props
 
 1. Name
 2. Symbol
 
+---
+
 **Add to Portfolio**
+
 URL: NA
+
 Components: NA
 
+---
+
 **Watch List**
+
 URL: /watchlist/:symbol
+
 Components:
 
 1. SearchBar
 2. DetailedStock
 
+---
+
 **Portfolio**
+
 URL: /portfolio/:symbol
+
 Components:
 
 1. SearchBar
 2. SummaryStock
 3. SmallInfoCard
 
-- Props
+Props
 
 1. Name
 2. Symbol
 3. Other stock info
 
+---
+
 **Contact**
+
 URL: /contact
+
+---
 
 ### Problem-Solving Strategy
 
@@ -146,7 +174,7 @@ URL: /contact
 
 ## APIs Used
 
-- ***
+- 
 
 ## Acknowledgments
 
