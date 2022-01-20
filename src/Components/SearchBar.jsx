@@ -6,7 +6,6 @@ function SearchBar(props) {
   let navigate = useNavigate();
 
   const navToSearchResult = () => {
-    console.log("run fetch api", searchRef.current.value);
     navigate(`/search/${searchRef.current.value}`);
   };
 

@@ -3,7 +3,7 @@ import Contact from "./Components/Contact";
 import NavBar from "./Components/NavBar";
 import Portfolio from "./Components/Portfolio";
 import SearchBar from "./Components/SearchBar";
-import SearchResults from "./Components/SearchResults";
+import SearchResult from "./Components/SearchResult";
 import SmallInfoCard from "./Components/SmallInfoCard";
 import Watchlist from "./Components/Watchlist";
 import { Routes, Route } from "react-router-dom";
@@ -19,7 +19,7 @@ function App() {
         <Route element={<NavBar />}>
           <Route path="/" element={<Home />} />
           <Route path="search" element={<Search />}>
-            <Route path=":symbol" element={<SearchResults />} />
+            <Route path=":symbol" element={<SearchResult />} />
           </Route>
           <Route path="watchlist" element={<Watchlist />} />
           <Route path="portfolio" element={<Portfolio />}>
