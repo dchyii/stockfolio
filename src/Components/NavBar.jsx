@@ -3,7 +3,7 @@ import { Link, Outlet } from "react-router-dom";
 function NavBar() {
   return (
     <>
-      <div id="NavBarBackground" className="bg-gray-800">
+      <div id="NavBarBackground" className="bg-gray-800 fixed w-full top-0">
         <nav
           id="NavBar"
           className="w-10/12 h-9 mx-auto px-5 text-slate-100 flex justify-between items-center"
@@ -21,7 +21,7 @@ function NavBar() {
           </div>
         </nav>
       </div>
-      <div className="w-10/12 h-screen mx-auto bg-slate-50">
+      <div className="w-10/12 h-screen mx-auto bg-slate-50 overflow-scroll">
         <Outlet />
       </div>
     </>
