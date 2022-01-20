@@ -21,7 +21,7 @@ function NavBar() {
           </div>
         </nav>
       </div>
-      <div className="w-10/12 h-screen mx-auto bg-slate-50 overflow-scroll">
+      <div className="w-10/12 h-screen mx-auto bg-slate-50 overflow-scroll mt-9">
         <Outlet />
       </div>
     </>
