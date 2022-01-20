@@ -8,6 +8,7 @@ import SmallInfoCard from "./Components/SmallInfoCard";
 import Watchlist from "./Components/Watchlist";
 import { Routes, Route } from "react-router-dom";
 import Home from "./Components/Home";
+import Search from "./Components/Search";
 
 const key = process.env.REACT_APP_APIKEY;
 
@@ -17,8 +18,9 @@ function App() {
       <Routes>
         <Route element={<NavBar />}>
           <Route path="/" element={<Home />} />
-          <Route path="search" element={<SearchBar />} />
-          <Route path="search/:symbol" element={<SearchResults />} />
+          <Route path="search" element={<Search />}>
+            <Route path=":symbol" element={<SearchResults />} />
+          </Route>
           <Route path="watchlist" element={<Watchlist />} />
           <Route path="portfolio" element={<Portfolio />}>
             <Route path=":symbol" element={<SmallInfoCard />} />
