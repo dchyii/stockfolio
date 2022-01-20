@@ -15,7 +15,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<NavBar />}>
+        <Route element={<NavBar />}>
           <Route path="/" element={<Home />} />
           <Route path="search" element={<SearchBar />} />
           <Route path="search/:symbol" element={<SearchResults />} />
