@@ -1,5 +1,5 @@
 //Ticker News
-// https://api.polygon.io/v2/reference/news?ticker=BRK.B&{key}
+// https://api.polygon.io/v2/reference/news?ticker=BRK.B&{KEY}
 
 const newsData = {
   results: [

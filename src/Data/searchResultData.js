@@ -1,5 +1,5 @@
 // Ticker Details v3
-// https://api.polygon.io/v3/reference/tickers/BRK.B?apiKey={key}
+// https://api.polygon.io/v3/reference/tickers/BRK.B?apiKey={KEY}
 
 const searchResultData = {
   results: {
