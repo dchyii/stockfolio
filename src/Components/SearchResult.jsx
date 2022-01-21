@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { data } from "autoprefixer";
+import { useEffect, useState, useReducer } from "react";
 import { useParams } from "react-router-dom";
 import newsData from "../Data/newsData";
 import searchResultData from "../Data/searchResultData";
@@ -12,7 +13,33 @@ function SearchResult() {
   const urlTickerDetails = `https://api.polygon.io/v3/reference/tickers/${symbol.toUpperCase()}?apiKey=${KEY}`;
   const urlTickerPrice = `https://api.polygon.io/v2/aggs/ticker/${symbol.toUpperCase()}/prev?adjusted=true&apiKey=${KEY}`;
   const urlTickerNews = `https://api.polygon.io/v2/reference/news?ticker=${symbol.toUpperCase()}&apiKey=${KEY}`;
-  const [stock, setStock] = useState({
+
+  // const [stock, setStock] = useState({
+  //   tickerDetails: searchResultData.results,
+  //   tickerPrice: searchResultPrice,
+  //   tickerNews: newsData.results,
+  // });
+
+  // const stock = {
+  //   tickerDetails: searchResultData.results,
+  //   tickerPrice: searchResultPrice,
+  //   tickerNews: newsData.results,
+  // }
+
+  const fnReducer = (stock, action) => {
+    switch (action.type) {
+      case "UPDATE_TICKER_DETAILS":
+        return { ...stock, tickerDetails: action.fetchedData };
+      case "UPDATE_TICKER_PRICE":
+        return { ...stock, tickerPrice: action.fetchedData };
+      case "UPDATE_TICKER_NEWS":
+        return { ...stock, tickerNews: action.fetchedData };
+      default:
+        return stock;
+    }
+  };
+
+  const [stock, dispatch] = useReducer(fnReducer, {
     tickerDetails: searchResultData.results,
     tickerPrice: searchResultPrice,
     tickerNews: newsData.results,
@@ -28,7 +55,8 @@ function SearchResult() {
       })
       .then((data) => {
         console.log("ticker details fetched");
-        stockInfo.tickerDetails = data.results;
+        const fetchedData = data.results;
+        dispatch({ type: "UPDATE_TICKER_DETAILS", fetchedData: fetchedData });
       });
   };
 
@@ -41,7 +69,8 @@ function SearchResult() {
       })
       .then((data) => {
         console.log("ticker price fetched");
-        stockInfo.tickerPrice = data;
+        const fetchedData = data;
+        dispatch({ type: "UPDATE_TICKER_PRICE", fetchedData: fetchedData });
       });
   };
 
@@ -54,7 +83,8 @@ function SearchResult() {
       })
       .then((data) => {
         console.log("ticker news fetched");
-        stockInfo.tickerNews = data.results;
+        const fetchedData = data.results;
+        dispatch({ type: "UPDATE_TICKER_NEWS", fetchedData: fetchedData });
       });
   };
 
@@ -63,7 +93,6 @@ function SearchResult() {
     fetchTickerDetails(stockInfo);
     fetchTickerPrice(stockInfo);
     fetchTickerNews(stockInfo);
-    setStock(stockInfo);
   };
 
   return (
