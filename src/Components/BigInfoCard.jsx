@@ -3,9 +3,6 @@ function BigInfoCard(props) {
 
   const tickerDetails = props.data.tickerDetails;
   const tickerPrice = props.data.tickerPrice;
-  const tickerNews = props.data.tickerNews;
-
-  console.log("big card details:", props.data);
 
   return (
     <div

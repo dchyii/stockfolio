@@ -92,16 +92,26 @@ function SearchResult() {
   // }, [symbol]);
   //! ^^^ uncomment on production ^^^ !//
 
+  let newsCards = "";
+  if (stock.tickerNews.length === 0) {
+    return;
+  } else {
+    newsCards = stock.tickerNews.map((news) => {
+      return <NewsCard data={news} key={news.id} />;
+    });
+  }
+
   return (
     <div
       id="SearchResult"
       className="w-10/12 mx-auto py-2 flex justify-around gap-5"
     >
       <div id="StockInfo" className="w-2/3">
-        <BigInfoCard data={stock} />
+        <BigInfoCard data={stock} key={stock.tickerDetails.ticker} />
       </div>
-      <div id="news" className="w-1/3">
-        <NewsCard />
+      <div id="news" className="w-1/3 p-3 h-screen overflow-scroll">
+        {/* <NewsCard data={stock.tickerNews[0]} key={1} /> */}
+        {newsCards}
       </div>
     </div>
   );
