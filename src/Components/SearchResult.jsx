@@ -8,11 +8,7 @@ import BigInfoCard from "./BigInfoCard";
 import NewsCard from "./NewsCard";
 
 function SearchResult() {
-  const KEY = process.env.REACT_APP_APIKEY;
   const { symbol } = useParams();
-  const urlTickerDetails = `https://api.polygon.io/v3/reference/tickers/${symbol.toUpperCase()}?apiKey=${KEY}`;
-  const urlTickerPrice = `https://api.polygon.io/v2/aggs/ticker/${symbol.toUpperCase()}/prev?adjusted=true&apiKey=${KEY}`;
-  const urlTickerNews = `https://api.polygon.io/v2/reference/news?ticker=${symbol.toUpperCase()}&apiKey=${KEY}`;
 
   const fnReducer = (stock, action) => {
     switch (action.type) {
@@ -33,67 +29,78 @@ function SearchResult() {
     tickerNews: newsData.results,
   });
 
-  //! to uncomment in production
-  const fetchTickerDetails = () => {
-    console.log("fetching ticker details");
-    fetch(urlTickerDetails)
-      .then((response) => {
-        console.log("processing details");
-        return response.json();
-      })
-      .then((data) => {
-        console.log("ticker details fetched");
-        const fetchedData = data.results;
-        dispatch({ type: "UPDATE_TICKER_DETAILS", fetchedData: fetchedData });
-      });
-  };
+  useEffect(() => {
+    const KEY = process.env.REACT_APP_APIKEY;
+    const urlTickerDetails = `https://api.polygon.io/v3/reference/tickers/${symbol.toUpperCase()}?apiKey=${KEY}`;
+    const urlTickerPrice = `https://api.polygon.io/v2/aggs/ticker/${symbol.toUpperCase()}/prev?adjusted=true&apiKey=${KEY}`;
+    const urlTickerNews = `https://api.polygon.io/v2/reference/news?ticker=${symbol.toUpperCase()}&apiKey=${KEY}`;
 
-  const fetchTickerPrice = () => {
-    console.log("fetching price");
-    fetch(urlTickerPrice)
-      .then((response) => {
-        console.log("processing price");
-        return response.json();
-      })
-      .then((data) => {
-        console.log("ticker price fetched");
-        const fetchedData = data;
-        dispatch({ type: "UPDATE_TICKER_PRICE", fetchedData: fetchedData });
-      });
-  };
+    //! to uncomment in production
+    const fetchTickerDetails = () => {
+      console.log("fetching ticker details");
+      fetch(urlTickerDetails)
+        .then((response) => {
+          console.log("processing details");
+          return response.json();
+        })
+        .then((data) => {
+          console.log("ticker details fetched");
+          const fetchedData = data.results;
+          dispatch({ type: "UPDATE_TICKER_DETAILS", fetchedData: fetchedData });
+        });
+    };
 
-  const fetchTickerNews = () => {
-    console.log("fetching ticker news");
-    fetch(urlTickerNews)
-      .then((response) => {
-        console.log("processing news");
-        return response.json();
-      })
-      .then((data) => {
-        console.log("ticker news fetched");
-        const fetchedData = data.results;
-        dispatch({ type: "UPDATE_TICKER_NEWS", fetchedData: fetchedData });
-      });
-  };
+    const fetchTickerPrice = () => {
+      console.log("fetching price");
+      fetch(urlTickerPrice)
+        .then((response) => {
+          console.log("processing price");
+          return response.json();
+        })
+        .then((data) => {
+          console.log("ticker price fetched");
+          const fetchedData = data.results[0];
+          dispatch({ type: "UPDATE_TICKER_PRICE", fetchedData: fetchedData });
+        });
+    };
 
-  const fetchAllTickerInfo = () => {
+    const fetchTickerNews = () => {
+      console.log("fetching ticker news");
+      fetch(urlTickerNews)
+        .then((response) => {
+          console.log("processing news");
+          return response.json();
+        })
+        .then((data) => {
+          console.log("ticker news fetched");
+          const fetchedData = data.results;
+          dispatch({ type: "UPDATE_TICKER_NEWS", fetchedData: fetchedData });
+        });
+    };
+
+    // const fetchAllTickerInfo = () => {
+    //   fetchTickerDetails();
+    //   fetchTickerPrice();
+    //   fetchTickerNews();
+    // };
+
+    // fetchAllTickerInfo
     fetchTickerDetails();
     fetchTickerPrice();
     fetchTickerNews();
-  };
+  }, [symbol]);
 
   return (
     <div
       id="SearchResult"
       className="w-10/12 mx-auto py-2 flex justify-around gap-5"
     >
-      <button onClick={fetchAllTickerInfo}>fetch</button>
-      {/* <div id="StockInfo" className="w-2/3">
+      <div id="StockInfo" className="w-2/3">
         <BigInfoCard data={stock} />
       </div>
       <div id="news" className="w-1/3">
         <NewsCard />
-      </div> */}
+      </div>
     </div>
   );
 }
