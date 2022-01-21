@@ -15,19 +15,22 @@ const key = process.env.REACT_APP_APIKEY;
 function App() {
   return (
     <div className="App">
-      <Routes>
-        <Route element={<NavBar />}>
-          <Route path="/" element={<Home />} />
-          <Route path="search" element={<Search />}>
-            <Route path=":symbol" element={<SearchResult />} />
+      <NavBar />
+      <div className="appContent w-10/12 h-screen mx-auto bg-slate-50 overflow-scroll pt-9">
+        <Routes>
+          <Route path="/" element={<Home />}>
+            <Route path="/" element={<SearchBar />} />
+            <Route path="search" element={<Search />}>
+              <Route path=":symbol" element={<SearchResult />} />
+            </Route>
+            <Route path="watchlist" element={<Watchlist />} />
+            <Route path="portfolio" element={<Portfolio />}>
+              <Route path=":symbol" element={<SmallInfoCard />} />
+            </Route>
+            <Route path="contact" element={<Contact />} />
           </Route>
-          <Route path="watchlist" element={<Watchlist />} />
-          <Route path="portfolio" element={<Portfolio />}>
-            <Route path=":symbol" element={<SmallInfoCard />} />
-          </Route>
-          <Route path="contact" element={<Contact />} />
-        </Route>
-      </Routes>
+        </Routes>
+      </div>
     </div>
   );
 }
