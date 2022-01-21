@@ -6,7 +6,6 @@ function NewsCard(props) {
 
   const navToSearchResult = (event) => {
     navigate(`/search/${event.target.innerText}`);
-    // console.log("clicked", event.target.innerText);
   };
 
   const relatedTickers = tickerNews.tickers.map((ticker) => {
@@ -31,10 +30,7 @@ function NewsCard(props) {
       </h2>
       <p>Source: {tickerNews.publisher.name}</p>
       <p>Related stocks: </p>
-      <div className="relatedTickers gap-2">
-        {/* <button onClick={navToSearchResult}>{tickerNews.tickers[1]}</button> */}
-        {relatedTickers}
-      </div>
+      <div className="relatedTickers gap-2">{relatedTickers}</div>
     </div>
   );
 }

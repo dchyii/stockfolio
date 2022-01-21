@@ -110,7 +110,6 @@ function SearchResult() {
         <BigInfoCard data={stock} key={stock.tickerDetails.ticker} />
       </div>
       <div id="news" className="w-1/3 p-3 h-screen overflow-scroll">
-        {/* <NewsCard data={stock.tickerNews[0]} key={1} /> */}
         {newsCards}
       </div>
     </div>
