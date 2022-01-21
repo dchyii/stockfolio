@@ -14,18 +14,6 @@ function SearchResult() {
   const urlTickerPrice = `https://api.polygon.io/v2/aggs/ticker/${symbol.toUpperCase()}/prev?adjusted=true&apiKey=${KEY}`;
   const urlTickerNews = `https://api.polygon.io/v2/reference/news?ticker=${symbol.toUpperCase()}&apiKey=${KEY}`;
 
-  // const [stock, setStock] = useState({
-  //   tickerDetails: searchResultData.results,
-  //   tickerPrice: searchResultPrice,
-  //   tickerNews: newsData.results,
-  // });
-
-  // const stock = {
-  //   tickerDetails: searchResultData.results,
-  //   tickerPrice: searchResultPrice,
-  //   tickerNews: newsData.results,
-  // }
-
   const fnReducer = (stock, action) => {
     switch (action.type) {
       case "UPDATE_TICKER_DETAILS":
@@ -46,7 +34,7 @@ function SearchResult() {
   });
 
   //! to uncomment in production
-  const fetchTickerDetails = (stockInfo) => {
+  const fetchTickerDetails = () => {
     console.log("fetching ticker details");
     fetch(urlTickerDetails)
       .then((response) => {
@@ -60,7 +48,7 @@ function SearchResult() {
       });
   };
 
-  const fetchTickerPrice = (stockInfo) => {
+  const fetchTickerPrice = () => {
     console.log("fetching price");
     fetch(urlTickerPrice)
       .then((response) => {
@@ -74,7 +62,7 @@ function SearchResult() {
       });
   };
 
-  const fetchTickerNews = (stockInfo) => {
+  const fetchTickerNews = () => {
     console.log("fetching ticker news");
     fetch(urlTickerNews)
       .then((response) => {
@@ -89,10 +77,9 @@ function SearchResult() {
   };
 
   const fetchAllTickerInfo = () => {
-    const stockInfo = stock;
-    fetchTickerDetails(stockInfo);
-    fetchTickerPrice(stockInfo);
-    fetchTickerNews(stockInfo);
+    fetchTickerDetails();
+    fetchTickerPrice();
+    fetchTickerNews();
   };
 
   return (
