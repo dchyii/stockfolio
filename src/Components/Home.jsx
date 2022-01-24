@@ -10,11 +10,11 @@ const KEY = process.env.REACT_APP_APIKEY;
 function Home() {
   const [allData, setAllData] = useState({
     date: dayjs(),
-    prevClosePrice: ["test"],
+    prevClosePrices: {},
     watchlist: watchlistStocks,
   });
 
-  console.log("watchlist", allData.watchlist);
+  console.log("allData", allData);
 
   let fetchDate = dayjs();
 
@@ -43,7 +43,7 @@ function Home() {
       //       setAllData({
       //          ...allData,
       //          date: fetchDate,
-      //          preClosePrice: data.results
+      //          prevClosePrices: data.results
       //          });
       //     }
       // });
@@ -53,7 +53,7 @@ function Home() {
       setAllData({
         ...allData,
         date: fetchDate,
-        prevClosePrice: allPriceData,
+        prevClosePrices: allPriceData,
       });
       //! ^^^ delete on production ^^^ !//
     }

@@ -1,20 +1,36 @@
-// import watchlistData from "../Data/watchlistData";
-// import watchlistStocks from "../Data/watchlistStocks";
-import dayjs from "dayjs";
 import { useOutletContext } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import Table from "./Table";
 
 function Watchlist() {
-  const priceData = useOutletContext().prevClosePrice;
-  console.log(priceData);
-  const date = useOutletContext().date;
-  console.log(date);
+  const allData = useOutletContext();
+
+  const watchlistStocks = allData.watchlist;
+  const prevClosePrices = allData.prevClosePrices?.data;
+  const date = allData.prevClosePrices.date;
+
+  const watchlistData = watchlistStocks.map((item) => {
+    const indexInPrevClosePrices = prevClosePrices?.findIndex((stock) => {
+      return stock.T === item.symbol;
+    });
+    const prevClosePrice = prevClosePrices?.[indexInPrevClosePrices];
+    return {
+      ...item,
+      open: prevClosePrice?.o,
+      high: prevClosePrice?.h,
+      low: prevClosePrice?.l,
+      close: prevClosePrice?.c,
+      volume: prevClosePrice?.v,
+    };
+  });
+
+  const tableHeader = ["Name", "Open", "High", "Low", "Close", "Volume"];
 
   return (
     <div>
       <SearchBar />
-      <Table />
+      <Table header={tableHeader} data={watchlistData} />
+      <p>Prices updated on {date?.format("DD MMM YYYY")}</p>
     </div>
   );
 }
