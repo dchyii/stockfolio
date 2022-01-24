@@ -3,15 +3,18 @@
 import dayjs from "dayjs";
 import { useOutletContext } from "react-router-dom";
 import SearchBar from "./SearchBar";
+import Table from "./Table";
 
 function Watchlist() {
-  // console.log("watchlist stock", watchlistStocks);
-  // console.log("watchlist", watchlistData);
-  const priceData = useOutletContext();
+  const priceData = useOutletContext().prevClosePrice;
   console.log(priceData);
+  const date = useOutletContext().date;
+  console.log(date);
+
   return (
     <div>
       <SearchBar />
+      <Table />
     </div>
   );
 }

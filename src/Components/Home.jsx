@@ -16,57 +16,67 @@ function Home() {
 
   console.log("watchlist", allData.watchlist);
 
-  useEffect(() => {
-    let fetchDate = dayjs();
+  let fetchDate = dayjs();
 
-    const fetchPriceData = () => {
-      if (fetchDate.get("day") === 0 || fetchDate.get("day") === 6) {
-        console.log("dont fetch", fetchDate.format("YYYY-MM-DD"));
-        fetchDate = fetchDate.subtract(1, "day");
-        fetchPriceData();
-      } else {
-        //! vvv uncomment on production vvv !//
-        // let formattedFetchDate = fetchDate.format("YYYY-MM-DD");
-        // let urlPreviousDayClose = `https://api.polygon.io/v2/aggs/grouped/locale/us/market/stocks/${formattedFetchDate}?adjusted=true&apiKey=${KEY}`;
-        // console.log("fetching price data", formattedFetchDate);
-        // fetch(urlPreviousDayClose)
-        //   .then((response) => {
-        //     console.log("processing price data");
-        //     return response.json();
-        //   })
-        //   .then((data) => {
-        //     if (data.queryCount === 0) {
-        //       console.log("zero data");
-        //       fetchDate = fetchDate.subtract(1, "day");
-        //       fetchPriceData();
-        //     } else {
-        //       console.log("price data fetched");
-        //       setAllData({
-        //          ...allData,
-        //          date: fetchDate,
-        //          preClosePrice: data.results
-        //          });
-        //     }
-        // });
-        //! ^^^ uncomment on production ^^^ !//
-        //! vvv delete on production vvv !//
-        console.log("simulated data");
-        setAllData({
-          ...allData,
-          date: fetchDate,
-          prevClosePrice: allPriceData,
-        });
-        //! ^^^ delete on production ^^^ !//
-      }
-    };
+  const fetchPriceData = () => {
+    if (fetchDate.get("day") === 0 || fetchDate.get("day") === 6) {
+      console.log("dont fetch", fetchDate.format("YYYY-MM-DD"));
+      fetchDate = fetchDate.subtract(1, "day");
+      fetchPriceData();
+    } else {
+      //! vvv uncomment on production vvv !//
+      // let formattedFetchDate = fetchDate.format("YYYY-MM-DD");
+      // let urlPreviousDayClose = `https://api.polygon.io/v2/aggs/grouped/locale/us/market/stocks/${formattedFetchDate}?adjusted=true&apiKey=${KEY}`;
+      // console.log("fetching price data", formattedFetchDate);
+      // fetch(urlPreviousDayClose)
+      //   .then((response) => {
+      //     console.log("processing price data");
+      //     return response.json();
+      //   })
+      //   .then((data) => {
+      //     if (data.queryCount === 0) {
+      //       console.log("zero data");
+      //       fetchDate = fetchDate.subtract(1, "day");
+      //       fetchPriceData();
+      //     } else {
+      //       console.log("price data fetched");
+      //       setAllData({
+      //          ...allData,
+      //          date: fetchDate,
+      //          preClosePrice: data.results
+      //          });
+      //     }
+      // });
+      //! ^^^ uncomment on production ^^^ !//
+      //! vvv delete on production vvv !//
+      console.log("simulated data");
+      setAllData({
+        ...allData,
+        date: fetchDate,
+        prevClosePrice: allPriceData,
+      });
+      //! ^^^ delete on production ^^^ !//
+    }
+  };
 
-    fetchPriceData();
-  }, []);
+  useEffect(fetchPriceData, []);
+
+  //! test code to add watchlist
+  // const addWatchlist = () => {
+  //   console.log("clicked", allData.watchlist);
+  //   const testdata = allData.watchlist;
+  //   testdata.push({ name: "Microsoft", symbol: "MSFT" });
+  //   console.log("test data", testdata);
+  //   setAllData({
+  //     ...allData,
+  //     watchlist: testdata,
+  //   });
+  // };
 
   return (
-    <>
+    <div>
       <Outlet context={allData} />
-    </>
+    </div>
   );
 }
 
