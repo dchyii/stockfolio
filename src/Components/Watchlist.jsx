@@ -1,5 +1,6 @@
 // import watchlistData from "../Data/watchlistData";
 // import watchlistStocks from "../Data/watchlistStocks";
+import dayjs from "dayjs";
 import { useOutletContext } from "react-router-dom";
 import SearchBar from "./SearchBar";
 
@@ -9,10 +10,9 @@ function Watchlist() {
   const priceData = useOutletContext();
   console.log(priceData);
   return (
-    <>
-      <h2>Hello Watchlist</h2>
+    <div>
       <SearchBar />
-    </>
+    </div>
   );
 }
 
