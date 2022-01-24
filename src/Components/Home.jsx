@@ -2,12 +2,20 @@ import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import dayjs from "dayjs";
 import allPriceData from "../Data/allPriceData";
+import watchlistStocks from "../Data/watchlistStocks";
 import SearchBar from "./SearchBar";
 
 const KEY = process.env.REACT_APP_APIKEY;
 
 function Home() {
-  const [priceData, setPriceData] = useState({ date: dayjs(), data: ["test"] });
+  const [allData, setAllData] = useState({
+    date: dayjs(),
+    prevClosePrice: ["test"],
+    watchlist: watchlistStocks,
+  });
+
+  console.log("watchlist", allData.watchlist);
+
   useEffect(() => {
     let fetchDate = dayjs();
 
@@ -33,13 +41,21 @@ function Home() {
         //       fetchPriceData();
         //     } else {
         //       console.log("price data fetched");
-        //       setPriceData({ date: fetchDate, data: data.results });
+        //       setAllData({
+        //          ...allData,
+        //          date: fetchDate,
+        //          preClosePrice: data.results
+        //          });
         //     }
         // });
         //! ^^^ uncomment on production ^^^ !//
         //! vvv delete on production vvv !//
         console.log("simulated data");
-        setPriceData({ date: fetchDate, data: allPriceData });
+        setAllData({
+          ...allData,
+          date: fetchDate,
+          prevClosePrice: allPriceData,
+        });
         //! ^^^ delete on production ^^^ !//
       }
     };
@@ -49,7 +65,7 @@ function Home() {
 
   return (
     <>
-      <Outlet context={priceData} />
+      <Outlet context={allData} />
     </>
   );
 }
