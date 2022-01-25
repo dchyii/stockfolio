@@ -16,6 +16,8 @@ function Portfolio() {
   const prevClosePrices = allData.prevClosePrices;
   const date = allData.date;
 
+  console.log("pf stocks", portfolioStocks);
+
   const tableHeader = [
     "Name",
     "Purchase Units",

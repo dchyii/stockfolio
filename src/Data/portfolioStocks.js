@@ -7,6 +7,7 @@ const portfolioStocks = [
     purchaseUnits: 1000,
     dividendsTillDate: 121,
     lastDividendUpdateDate: "2021-11-30",
+    purchaseDate: "2021-01-02",
   },
   {
     name: "Amazon.Com Inc",
@@ -15,6 +16,7 @@ const portfolioStocks = [
     purchaseUnits: 1000,
     dividendsTillDate: 97.1,
     lastDividendUpdateDate: "2021-06-30",
+    purchaseDate: "2021-01-02",
   },
 ];
 
