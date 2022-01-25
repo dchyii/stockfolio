@@ -14,7 +14,7 @@ function PortfolioTable(props) {
 
   const data = props.data.map((row, i) => {
     return (
-      <tr key={row.symbol}>
+      <tr key={i}>
         <td colSpan={2}>
           <Link to={`/search/${row.symbol}`}>
             {row.name} ({row.symbol})
