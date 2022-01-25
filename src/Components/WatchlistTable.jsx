@@ -42,7 +42,7 @@ function WatchlistTable(props) {
         <td>
           <svg
             id={i}
-            onClick={(event) => props.fnRemoveFromWatchlist(event)}
+            onClick={(event) => props.fnShowRemoveConfirmationScreen(event)}
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5 mx-auto"
             viewBox="0 0 20 20"

@@ -5,7 +5,7 @@ import SearchBar from "./SearchBar";
 import WatchlistTable from "./WatchlistTable";
 
 function Watchlist() {
-  const allData = useOutletContext();
+  const [allData, setAllData] = useOutletContext();
   const [confirmRemove, setConfirmRemove] = useState({
     display: false,
     stock: "",
@@ -33,12 +33,33 @@ function Watchlist() {
     };
   });
 
-  const removeFromWatchlist = (event) => {
-    console.log("remove from watchlist", event.target.id);
+  const showRemoveConfirmationScreen = (event) => {
     setConfirmRemove({
       ...confirmRemove,
       display: true,
       stock: watchlistStocks[event.target.id],
+    });
+  };
+
+  const cancel = () => {
+    setConfirmRemove({
+      ...confirmRemove,
+      display: false,
+      stock: "",
+    });
+  };
+
+  const removeFromWatchlist = (removedStock) => {
+    setAllData({
+      ...allData,
+      watchlist: allData.watchlist.filter((stock) => {
+        return stock.symbol !== removedStock;
+      }),
+    });
+    setConfirmRemove({
+      ...confirmRemove,
+      display: false,
+      stock: "",
     });
   };
 
@@ -48,13 +69,16 @@ function Watchlist() {
       <WatchlistTable
         header={tableHeader}
         data={watchlistData}
-        fnRemoveFromWatchlist={removeFromWatchlist}
+        fnShowRemoveConfirmationScreen={showRemoveConfirmationScreen}
       />
       <p>Prices updated on {date?.format("DD MMM YYYY")}</p>
       <ConfirmRemove
         display={confirmRemove.display}
         info={confirmRemove.stock}
         list={confirmRemove.list}
+        s
+        fnCancel={cancel}
+        fnRemove={removeFromWatchlist}
       />
     </div>
   );

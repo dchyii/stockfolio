@@ -77,7 +77,7 @@ function Home() {
 
   return (
     <div>
-      <Outlet context={allData} />
+      <Outlet context={[allData, setAllData]} />
     </div>
   );
 }

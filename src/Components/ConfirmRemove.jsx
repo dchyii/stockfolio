@@ -1,6 +1,5 @@
 function ConfirmRemove(props) {
-  console.log(props.info);
-  console.log(props.list);
+  const removedStock = props.info.symbol;
 
   return (
     <div
@@ -12,12 +11,15 @@ function ConfirmRemove(props) {
         You are about to remove {props.info.name} ({props.info.symbol}) from
         your {props.list}.
       </p>
-      <br />
       <p>Do you wish to proceed?</p>
-      <br />
       <div id="buttons" className="flex justify-around">
-        <button>Cancel</button>
-        <button className="text-red-600">Proceed</button>
+        <button onClick={props.fnCancel}>Cancel</button>
+        <button
+          onClick={() => props.fnRemove(removedStock)}
+          className="text-red-600"
+        >
+          Proceed
+        </button>
       </div>
     </div>
   );
