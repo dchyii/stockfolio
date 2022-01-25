@@ -1,9 +1,16 @@
+import { useState } from "react";
 import { useOutletContext } from "react-router-dom";
+import ConfirmRemove from "./ConfirmRemove";
 import SearchBar from "./SearchBar";
 import WatchlistTable from "./WatchlistTable";
 
 function Watchlist() {
   const allData = useOutletContext();
+  const [confirmRemove, setConfirmRemove] = useState({
+    display: false,
+    stock: "",
+    list: "Watchlist",
+  });
 
   const watchlistStocks = allData.watchlist;
   const prevClosePrices = allData.prevClosePrices;
@@ -28,6 +35,11 @@ function Watchlist() {
 
   const removeFromWatchlist = (event) => {
     console.log("remove from watchlist", event.target.id);
+    setConfirmRemove({
+      ...confirmRemove,
+      display: true,
+      stock: watchlistStocks[event.target.id],
+    });
   };
 
   return (
@@ -39,6 +51,11 @@ function Watchlist() {
         fnRemoveFromWatchlist={removeFromWatchlist}
       />
       <p>Prices updated on {date?.format("DD MMM YYYY")}</p>
+      <ConfirmRemove
+        display={confirmRemove.display}
+        info={confirmRemove.stock}
+        list={confirmRemove.list}
+      />
     </div>
   );
 }
