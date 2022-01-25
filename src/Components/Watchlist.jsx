@@ -64,6 +64,11 @@ function Watchlist() {
       ...allData,
       portfolio: allData.portfolio.concat(addStock),
     });
+    setAddPortfolio({
+      ...addPortfolio,
+      display: false,
+      stock: "",
+    });
   };
 
   const showRemoveConfirmationScreen = (event) => {
