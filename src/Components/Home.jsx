@@ -4,6 +4,7 @@ import dayjs from "dayjs";
 import allPriceData from "../Data/allPriceData";
 import watchlistStocks from "../Data/watchlistStocks";
 import SearchBar from "./SearchBar";
+import portfolioStocks from "../Data/portfolioStocks";
 
 const KEY = process.env.REACT_APP_APIKEY;
 
@@ -12,6 +13,7 @@ function Home() {
     date: dayjs(),
     prevClosePrices: [],
     watchlist: watchlistStocks,
+    portfolio: portfolioStocks,
   });
 
   console.log("allData", allData);

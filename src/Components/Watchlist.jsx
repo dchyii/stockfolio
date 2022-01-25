@@ -7,7 +7,9 @@ function Watchlist() {
 
   const watchlistStocks = allData.watchlist;
   const prevClosePrices = allData.prevClosePrices;
-  const date = allData.prevClosePrices.date;
+  const date = allData.date;
+
+  const tableHeader = ["Name", "Open", "High", "Low", "Close", "Volume"];
 
   const watchlistData = watchlistStocks.map((item) => {
     const indexInPrevClosePrices = prevClosePrices?.findIndex((stock) => {
@@ -24,12 +26,18 @@ function Watchlist() {
     };
   });
 
-  const tableHeader = ["Name", "Open", "High", "Low", "Close", "Volume"];
+  const removeFromWatchlist = (event) => {
+    console.log("remove from watchlist", event.target.id);
+  };
 
   return (
     <div>
       <SearchBar />
-      <WatchlistTable header={tableHeader} data={watchlistData} />
+      <WatchlistTable
+        header={tableHeader}
+        data={watchlistData}
+        fnRemoveFromWatchlist={removeFromWatchlist}
+      />
       <p>Prices updated on {date?.format("DD MMM YYYY")}</p>
     </div>
   );

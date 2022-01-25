@@ -24,9 +24,7 @@ function App() {
               <Route path=":symbol" element={<SearchResult />} />
             </Route>
             <Route path="watchlist" element={<Watchlist />} />
-            <Route path="portfolio" element={<Portfolio />}>
-              <Route path=":symbol" element={<SmallInfoCard />} />
-            </Route>
+            <Route path="portfolio" element={<Portfolio />} />
             <Route path="contact" element={<Contact />} />
           </Route>
         </Routes>
