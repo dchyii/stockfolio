@@ -108,6 +108,10 @@ function SearchResult() {
     >
       <div id="StockInfo" className="w-2/3">
         <BigInfoCard data={stock} key={stock.tickerDetails.ticker} />
+        <div className="flex justify-around my-3">
+          <button>Add to Watchlist</button>
+          <button>Add to Portfolio</button>
+        </div>
       </div>
       <div id="news" className="w-1/3 p-3 h-screen overflow-scroll">
         {newsCards}
