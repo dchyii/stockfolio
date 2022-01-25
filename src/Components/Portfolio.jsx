@@ -1,11 +1,16 @@
-import portfolioStockData from "../Data/portfolioStockData";
-import portfolioDividendData from "../Data/portfolioDividendData";
+import { useState } from "react";
 import SearchBar from "./SearchBar";
 import { Outlet, useOutletContext } from "react-router-dom";
 import PortfolioTable from "./PortfolioTable";
+import ConfirmRemove from "./ConfirmRemove";
 
 function Portfolio() {
-  const allData = useOutletContext();
+  const [allData, setAllData] = useOutletContext();
+  const [confirmRemove, setConfirmRemove] = useState({
+    display: false,
+    stock: "",
+    list: "Portfolio",
+  });
 
   const portfolioStocks = allData.portfolio;
   const prevClosePrices = allData.prevClosePrices;
@@ -33,11 +38,52 @@ function Portfolio() {
 
   console.log("pf", portfolioData);
 
+  const showRemoveConfirmationScreen = (event) => {
+    setConfirmRemove({
+      ...confirmRemove,
+      display: true,
+      stock: portfolioData[event.target.id],
+    });
+  };
+
+  const cancel = () => {
+    setConfirmRemove({
+      ...confirmRemove,
+      display: false,
+      stock: "",
+    });
+  };
+
+  const removeFromPortfolio = (removedStock) => {
+    setAllData({
+      ...allData,
+      portfolio: allData.portfolio.filter((stock) => {
+        return stock.symbol !== removedStock;
+      }),
+    });
+    setConfirmRemove({
+      ...confirmRemove,
+      display: false,
+      stock: "",
+    });
+  };
+
   return (
     <div>
       <SearchBar />
-      <PortfolioTable header={tableHeader} data={portfolioData} />
+      <PortfolioTable
+        header={tableHeader}
+        data={portfolioData}
+        fnShowRemoveConfirmationScreen={showRemoveConfirmationScreen}
+      />
       <p>Prices updated on {date?.format("DD MMM YYYY")}</p>
+      <ConfirmRemove
+        display={confirmRemove.display}
+        info={confirmRemove.stock}
+        list={confirmRemove.list}
+        fnCancel={cancel}
+        fnRemove={removeFromPortfolio}
+      />
     </div>
   );
 }
