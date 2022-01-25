@@ -1,12 +1,12 @@
 import { useOutletContext } from "react-router-dom";
 import SearchBar from "./SearchBar";
-import Table from "./Table";
+import WatchlistTable from "./WatchlistTable";
 
 function Watchlist() {
   const allData = useOutletContext();
 
   const watchlistStocks = allData.watchlist;
-  const prevClosePrices = allData.prevClosePrices?.data;
+  const prevClosePrices = allData.prevClosePrices;
   const date = allData.prevClosePrices.date;
 
   const watchlistData = watchlistStocks.map((item) => {
@@ -29,7 +29,7 @@ function Watchlist() {
   return (
     <div>
       <SearchBar />
-      <Table header={tableHeader} data={watchlistData} />
+      <WatchlistTable header={tableHeader} data={watchlistData} />
       <p>Prices updated on {date?.format("DD MMM YYYY")}</p>
     </div>
   );
