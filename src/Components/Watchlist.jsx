@@ -76,7 +76,6 @@ function Watchlist() {
         display={confirmRemove.display}
         info={confirmRemove.stock}
         list={confirmRemove.list}
-        s
         fnCancel={cancel}
         fnRemove={removeFromWatchlist}
       />
