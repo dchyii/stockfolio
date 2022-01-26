@@ -1,11 +1,13 @@
 import SearchBar from "./SearchBar";
-import { Outlet } from "react-router-dom";
+import { Outlet, useOutletContext } from "react-router-dom";
 
 function Search() {
+  const [allData, setAllData] = useOutletContext();
+
   return (
     <>
       <SearchBar />
-      <Outlet />
+      <Outlet context={[allData, setAllData]} />
     </>
   );
 }
