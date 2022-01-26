@@ -4,6 +4,7 @@ import newsData from "../Data/newsData";
 import searchResultData from "../Data/searchResultData";
 import searchResultPrice from "../Data/searchResultPrice";
 import AddToPortfolio from "./AddToPortfolio";
+import AddToWatchlist from "./AddToWatchlist";
 import BigInfoCard from "./BigInfoCard";
 import NewsCard from "./NewsCard";
 
@@ -108,13 +109,21 @@ function SearchResult() {
   //! ^^^ uncomment on production ^^^ !//
 
   const [addPortfolio, setAddPortfolio] = useState({
+    display: false,
+    stock: {
+      name: stock.tickerDetails.name,
+      symbol: symbol,
+      close: stock.tickerPrice?.c,
+    },
+    date: allData.date,
+  });
+
+  const [addWatchlist, setAddWatchlist] = useState({
     display: true,
     stock: {
       name: stock.tickerDetails.name,
       symbol: symbol,
-      close: stock.tickerPrice.c,
     },
-    date: allData.date,
   });
 
   let newsCards = "";
@@ -155,6 +164,18 @@ function SearchResult() {
     cancelAdd();
   };
 
+  const addToWatchlist = (addWatch) => {
+    console.log("add to watchlist", addWatch);
+    setAllData({
+      ...allData,
+      watchlist: allData.watchlist.concat(addWatch),
+    });
+  };
+
+  const cancelWatch = () => {
+    console.log("cancel watchlist");
+  };
+
   return (
     <>
       <div
@@ -175,6 +196,13 @@ function SearchResult() {
           </div>
         </div>
       </div>
+      <AddToWatchlist
+        display={addWatchlist.display}
+        info={addWatchlist.stock}
+        watchlist={allData.watchlist}
+        fnCancel={cancelWatch}
+        fnAdd={addToWatchlist}
+      />
       <AddToPortfolio
         display={addPortfolio.display}
         info={addPortfolio.stock}
