@@ -27,53 +27,41 @@ function Home() {
       fetchPriceData();
     } else {
       //! vvv uncomment on production vvv !//
-      let formattedFetchDate = fetchDate.format("YYYY-MM-DD");
-      let urlPreviousDayClose = `https://api.polygon.io/v2/aggs/grouped/locale/us/market/stocks/${formattedFetchDate}?adjusted=true&apiKey=${KEY}`;
-      console.log("fetching price data", formattedFetchDate);
-      fetch(urlPreviousDayClose)
-        .then((response) => {
-          console.log("processing price data");
-          return response.json();
-        })
-        .then((data) => {
-          if (data.queryCount === 0) {
-            console.log("zero data");
-            fetchDate = fetchDate.subtract(1, "day");
-            fetchPriceData();
-          } else {
-            console.log("price data fetched");
-            setAllData({
-              ...allData,
-              date: fetchDate,
-              prevClosePrices: data.results,
-            });
-          }
-        });
+      // let formattedFetchDate = fetchDate.format("YYYY-MM-DD");
+      // let urlPreviousDayClose = `https://api.polygon.io/v2/aggs/grouped/locale/us/market/stocks/${formattedFetchDate}?adjusted=true&apiKey=${KEY}`;
+      // console.log("fetching price data", formattedFetchDate);
+      // fetch(urlPreviousDayClose)
+      //   .then((response) => {
+      //     console.log("processing price data");
+      //     return response.json();
+      //   })
+      //   .then((data) => {
+      //     if (data.queryCount === 0) {
+      //       console.log("zero data");
+      //       fetchDate = fetchDate.subtract(1, "day");
+      //       fetchPriceData();
+      //     } else {
+      //       console.log("price data fetched");
+      //       setAllData({
+      //         ...allData,
+      //         date: fetchDate,
+      //         prevClosePrices: data.results,
+      //       });
+      //     }
+      //   });
       //! ^^^ uncomment on production ^^^ !//
       //! vvv delete on production vvv !//
-      // console.log("simulated data");
-      // setAllData({
-      //   ...allData,
-      //   date: fetchDate,
-      //   prevClosePrices: allPriceData,
-      // });
+      console.log("simulated data");
+      setAllData({
+        ...allData,
+        date: fetchDate,
+        prevClosePrices: allPriceData,
+      });
       //! ^^^ delete on production ^^^ !//
     }
   };
 
   useEffect(fetchPriceData, []);
-
-  //! test code to add watchlist
-  // const addWatchlist = () => {
-  //   console.log("clicked", allData.watchlist);
-  //   const testdata = allData.watchlist;
-  //   testdata.push({ name: "Microsoft", symbol: "MSFT" });
-  //   console.log("test data", testdata);
-  //   setAllData({
-  //     ...allData,
-  //     watchlist: testdata,
-  //   });
-  // };
 
   return (
     <div>
