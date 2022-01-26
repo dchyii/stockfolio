@@ -18,7 +18,7 @@ function NavBar() {
           <div id="links" className="w-1/3 text-base flex justify-between">
             <Link to="watchlist"> Watchlist </Link>
             <Link to="portfolio"> Portfolio </Link>
-            <Link to="contact"> Contact </Link>
+            <Link to="about"> About </Link>
           </div>
         </nav>
       </div>

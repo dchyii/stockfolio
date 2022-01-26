@@ -1,5 +1,5 @@
 import "./App.css";
-import Contact from "./Components/Contact";
+import About from "./Components/About";
 import NavBar from "./Components/NavBar";
 import Portfolio from "./Components/Portfolio";
 import SearchBar from "./Components/SearchBar";
@@ -25,7 +25,7 @@ function App() {
             </Route>
             <Route path="watchlist" element={<Watchlist />} />
             <Route path="portfolio" element={<Portfolio />} />
-            <Route path="contact" element={<Contact />} />
+            <Route path="about" element={<About />} />
           </Route>
         </Routes>
       </div>
