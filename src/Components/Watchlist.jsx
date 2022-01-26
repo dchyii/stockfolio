@@ -42,6 +42,8 @@ function Watchlist() {
     };
   });
 
+  console.log("watchlistData[1]", watchlistData[1]);
+
   const showAddToPortfolioScreen = (event) => {
     setAddPortfolio({
       ...addPortfolio,

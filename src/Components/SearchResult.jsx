@@ -106,6 +106,16 @@ function SearchResult() {
   // }, [symbol, prevClosePrices]);
   //! ^^^ uncomment on production ^^^ !//
 
+  const [addPortfolio, setAddPortfolio] = useState({
+    display: true,
+    stock: {
+      name: stock.tickerDetails.name,
+      symbol: symbol,
+      close: stock.tickerPrice.c,
+    },
+    date: allData.date,
+  });
+
   let newsCards = "";
   if (stock.tickerNews.length === 0) {
     return (
@@ -120,21 +130,26 @@ function SearchResult() {
   }
 
   return (
-    <div
-      id="SearchResult"
-      className="w-10/12 mx-auto py-2 flex justify-around gap-5"
-    >
-      <div id="StockInfo" className="w-2/3">
-        <BigInfoCard data={stock} key={stock.tickerDetails.ticker} />
-        <div className="flex justify-around my-3">
-          <button>Add to Watchlist</button>
-          <button>Add to Portfolio</button>
+    <>
+      <div
+        id="SearchResult"
+        className="w-10/12 mx-auto py-2 flex justify-around gap-5"
+      >
+        <div id="StockInfo" className="w-2/3">
+          <BigInfoCard data={stock} key={stock.tickerDetails.ticker} />
+        </div>
+        <div className="w-1/3 h-screen">
+          <div>
+            <button>Add to Watchlist</button>
+            <button>Add to Portfolio</button>
+          </div>
+          <h2>Related News</h2>
+          <div id="news" className="p-3 h-screen overflow-scroll">
+            {newsCards}
+          </div>
         </div>
       </div>
-      <div id="news" className="w-1/3 p-3 h-screen overflow-scroll">
-        {newsCards}
-      </div>
-    </div>
+    </>
   );
 }
 
