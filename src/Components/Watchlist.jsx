@@ -66,11 +66,7 @@ function Watchlist() {
       ...allData,
       portfolio: allData.portfolio.concat(addStock),
     });
-    setAddPortfolio({
-      ...addPortfolio,
-      display: false,
-      stock: "",
-    });
+    cancelAdd();
   };
 
   const showRemoveConfirmationScreen = (event) => {
@@ -96,11 +92,7 @@ function Watchlist() {
         return stock.symbol !== removedStock;
       }),
     });
-    setConfirmRemove({
-      ...confirmRemove,
-      display: false,
-      stock: "",
-    });
+    cancelRemove();
   };
 
   return (
