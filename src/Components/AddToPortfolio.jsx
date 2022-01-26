@@ -65,22 +65,7 @@ function AddToPortfolio(props) {
       </form>
       <div id="buttons" className="flex justify-around">
         <button onClick={props.fnCancel}>Cancel</button>
-        <button
-          className="text-green-600"
-          // onClick={() => {
-          // setNewStock({
-          //   name: props?.info?.name,
-          //   symbol: props?.info?.symbol,
-          //   purchasePrice: purchasePriceRef?.current?.value,
-          //   purchaseUnits: purchaseUnitsRef?.current?.value,
-          //   dividendsTillDate: 0,
-          //   lastDividendUpdateDate: purchaseDateRef?.current?.value,
-          //   purchaseDate: purchaseDateRef?.current?.value,
-          // });
-          // props.fnAdd(newStock);
-          // }}
-          onClick={submitNewStock}
-        >
+        <button className="text-green-600" onClick={submitNewStock}>
           Add
         </button>
       </div>
