@@ -1,6 +1,5 @@
-import { data } from "autoprefixer";
 import { useEffect, useState, useReducer } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useOutletContext } from "react-router-dom";
 import newsData from "../Data/newsData";
 import searchResultData from "../Data/searchResultData";
 import searchResultPrice from "../Data/searchResultPrice";
@@ -9,6 +8,8 @@ import NewsCard from "./NewsCard";
 
 function SearchResult() {
   const { symbol } = useParams();
+  const [allData, setAllData] = useOutletContext();
+  const prevClosePrices = allData.prevClosePrices;
 
   //! vvv remove on production vvv !//
   // const stock = {
@@ -38,14 +39,15 @@ function SearchResult() {
       name: "",
       ticker: symbol,
     },
-    tickerPrice: {},
+    tickerPrice:
+      prevClosePrices[prevClosePrices.findIndex((stock) => stock.T === symbol)],
     tickerNews: [],
   });
 
   useEffect(() => {
     const KEY = process.env.REACT_APP_APIKEY;
     const urlTickerDetails = `https://api.polygon.io/v3/reference/tickers/${symbol.toUpperCase()}?apiKey=${KEY}`;
-    const urlTickerPrice = `https://api.polygon.io/v2/aggs/ticker/${symbol.toUpperCase()}/prev?adjusted=true&apiKey=${KEY}`;
+    // const urlTickerPrice = `https://api.polygon.io/v2/aggs/ticker/${symbol.toUpperCase()}/prev?adjusted=true&apiKey=${KEY}`;
     const urlTickerNews = `https://api.polygon.io/v2/reference/news?ticker=${symbol.toUpperCase()}&apiKey=${KEY}`;
 
     const fetchTickerDetails = () => {
@@ -63,17 +65,24 @@ function SearchResult() {
     };
 
     const fetchTickerPrice = () => {
-      console.log("fetching price");
-      fetch(urlTickerPrice)
-        .then((response) => {
-          console.log("processing price");
-          return response.json();
-        })
-        .then((data) => {
-          console.log("ticker price fetched");
-          const fetchedData = data.results[0];
-          dispatch({ type: "UPDATE_TICKER_PRICE", fetchedData: fetchedData });
-        });
+      // console.log("fetching price");
+      // fetch(urlTickerPrice)
+      //   .then((response) => {
+      //     console.log("processing price");
+      //     return response.json();
+      //   })
+      //   .then((data) => {
+      //     console.log("ticker price fetched");
+      //     const fetchedData = data.results[0];
+      //     dispatch({ type: "UPDATE_TICKER_PRICE", fetchedData: fetchedData });
+      //   });
+      dispatch({
+        type: "UPDATE_TICKER_PRICE",
+        fetchedData:
+          prevClosePrices[
+            prevClosePrices.findIndex((stock) => stock.T === symbol)
+          ],
+      });
     };
 
     const fetchTickerNews = () => {
@@ -93,7 +102,7 @@ function SearchResult() {
     fetchTickerDetails();
     fetchTickerPrice();
     fetchTickerNews();
-  }, [symbol]);
+  }, [symbol, prevClosePrices]);
   //! ^^^ uncomment on production ^^^ !//
 
   let newsCards = "";
