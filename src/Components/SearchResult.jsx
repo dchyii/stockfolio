@@ -119,11 +119,14 @@ function SearchResult() {
   });
 
   const [addWatchlist, setAddWatchlist] = useState({
-    display: true,
+    display: false,
     stock: {
       name: stock.tickerDetails.name,
       symbol: symbol,
     },
+    index: allData.watchlist.findIndex(
+      (watchlistItem) => watchlistItem.symbol === symbol
+    ),
   });
 
   let newsCards = "";
@@ -166,14 +169,33 @@ function SearchResult() {
 
   const addToWatchlist = (addWatch) => {
     console.log("add to watchlist", addWatch);
-    setAllData({
-      ...allData,
-      watchlist: allData.watchlist.concat(addWatch),
+    if (
+      allData.watchlist.findIndex(
+        (watchlistItem) => watchlistItem.symbol === addWatch.symbol
+      ) === -1
+    ) {
+      console.log("here");
+      setAllData({
+        ...allData,
+        watchlist: allData.watchlist.concat(addWatch),
+      });
+    }
+  };
+
+  const showAddToWatchlistScreen = () => {
+    setAddWatchlist({
+      ...addWatchlist,
+      display: true,
     });
+    addToWatchlist(addWatchlist.stock);
   };
 
   const cancelWatch = () => {
     console.log("cancel watchlist");
+    setAddWatchlist({
+      ...addWatchlist,
+      display: false,
+    });
   };
 
   return (
@@ -187,7 +209,7 @@ function SearchResult() {
         </div>
         <div className="w-1/3 h-screen">
           <div>
-            <button>Add to Watchlist</button>
+            <button onClick={showAddToWatchlistScreen}>Add to Watchlist</button>
             <button onClick={showAddToPortfolioScreen}>Add to Portfolio</button>
           </div>
           <h2>Related News</h2>
@@ -199,9 +221,8 @@ function SearchResult() {
       <AddToWatchlist
         display={addWatchlist.display}
         info={addWatchlist.stock}
-        watchlist={allData.watchlist}
+        index={addWatchlist.index}
         fnCancel={cancelWatch}
-        fnAdd={addToWatchlist}
       />
       <AddToPortfolio
         display={addPortfolio.display}
