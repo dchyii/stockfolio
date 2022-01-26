@@ -3,6 +3,7 @@ import SearchBar from "./SearchBar";
 import { Outlet, useOutletContext } from "react-router-dom";
 import PortfolioTable from "./PortfolioTable";
 import ConfirmRemove from "./ConfirmRemove";
+import AmendPortfolio from "./AmendPortfolio";
 
 function Portfolio() {
   const [allData, setAllData] = useOutletContext();
@@ -11,12 +12,15 @@ function Portfolio() {
     stock: "",
     list: "Portfolio",
   });
+  const [amend, setAmend] = useState({
+    display: false,
+    stock: "",
+    index: -1,
+  });
 
   const portfolioStocks = allData.portfolio;
   const prevClosePrices = allData.prevClosePrices;
   const date = allData.date;
-
-  console.log("pf stocks", portfolioStocks);
 
   const tableHeader = [
     "Name",
@@ -37,8 +41,6 @@ function Portfolio() {
       close: prevClosePrice?.c,
     };
   });
-
-  console.log("pf", portfolioData);
 
   const showRemoveConfirmationScreen = (event) => {
     setConfirmRemove({
@@ -70,6 +72,36 @@ function Portfolio() {
     });
   };
 
+  const showAmendScreen = (event) => {
+    setAmend({
+      ...amend,
+      display: true,
+      stock: portfolioData[event.target.id],
+      index: event.target.id,
+    });
+  };
+
+  const cancelAmend = () => {
+    setAmend({
+      ...amend,
+      display: false,
+      stock: "",
+      index: -1,
+    });
+  };
+
+  const amendPortfolio = (amendedData) => {
+    const updatedPortfolio = allData.portfolio;
+    updatedPortfolio[amendedData.index] = amendedData.data;
+
+    console.log("updated portfolio", updatedPortfolio);
+    setAllData({
+      ...allData,
+      portfolio: updatedPortfolio,
+    });
+    cancelAmend();
+  };
+
   return (
     <div>
       <SearchBar />
@@ -77,6 +109,7 @@ function Portfolio() {
         header={tableHeader}
         data={portfolioData}
         fnShowRemoveConfirmationScreen={showRemoveConfirmationScreen}
+        fnShowAmendScreen={showAmendScreen}
       />
       <p>Prices updated on {date?.format("DD MMM YYYY")}</p>
       <ConfirmRemove
@@ -85,6 +118,13 @@ function Portfolio() {
         list={confirmRemove.list}
         fnCancel={cancel}
         fnRemove={removeFromPortfolio}
+      />
+      <AmendPortfolio
+        display={amend.display}
+        info={amend.stock}
+        index={amend.index}
+        fnCancel={cancelAmend}
+        fnAmend={amendPortfolio}
       />
     </div>
   );
