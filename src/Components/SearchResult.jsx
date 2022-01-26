@@ -9,7 +9,8 @@ import BigInfoCard from "./BigInfoCard";
 import NewsCard from "./NewsCard";
 
 function SearchResult() {
-  const { symbol } = useParams();
+  const { symbolCaseInsensitive } = useParams();
+  const symbol = symbolCaseInsensitive?.toUpperCase();
   const [allData, setAllData] = useOutletContext();
   const prevClosePrices = allData.prevClosePrices;
 
@@ -72,9 +73,9 @@ function SearchResult() {
   //! vvv uncomment on production vvv !//
   // useEffect(() => {
   //   const KEY = process.env.REACT_APP_APIKEY;
-  //   const urlTickerDetails = `https://api.polygon.io/v3/reference/tickers/${symbol.toUpperCase()}?apiKey=${KEY}`;
+  //   const urlTickerDetails = `https://api.polygon.io/v3/reference/tickers/${symbol}?apiKey=${KEY}`;
   //   // const urlTickerPrice = `https://api.polygon.io/v2/aggs/ticker/${symbol.toUpperCase()}/prev?adjusted=true&apiKey=${KEY}`;
-  //   const urlTickerNews = `https://api.polygon.io/v2/reference/news?ticker=${symbol.toUpperCase()}&apiKey=${KEY}`;
+  //   const urlTickerNews = `https://api.polygon.io/v2/reference/news?ticker=${symbol}&apiKey=${KEY}`;
 
   //   const fetchTickerDetails = () => {
   //     console.log("fetching ticker details");

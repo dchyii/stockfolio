@@ -21,7 +21,7 @@ function App() {
           <Route path="/" element={<Home />}>
             <Route path="/" element={<SearchBar />} />
             <Route path="search" element={<Search />}>
-              <Route path=":symbol" element={<SearchResult />} />
+              <Route path=":symbolCaseInsensitive" element={<SearchResult />} />
             </Route>
             <Route path="watchlist" element={<Watchlist />} />
             <Route path="portfolio" element={<Portfolio />} />
