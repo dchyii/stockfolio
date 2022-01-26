@@ -3,6 +3,7 @@ import { useParams, useOutletContext } from "react-router-dom";
 import newsData from "../Data/newsData";
 import searchResultData from "../Data/searchResultData";
 import searchResultPrice from "../Data/searchResultPrice";
+import AddToPortfolio from "./AddToPortfolio";
 import BigInfoCard from "./BigInfoCard";
 import NewsCard from "./NewsCard";
 
@@ -129,6 +130,31 @@ function SearchResult() {
     });
   }
 
+  const showAddToPortfolioScreen = () => {
+    console.log("add to portfolio screen");
+    setAddPortfolio({
+      ...addPortfolio,
+      display: true,
+    });
+  };
+
+  const cancelAdd = () => {
+    console.log("cancel add to portfolio");
+    setAddPortfolio({
+      ...addPortfolio,
+      display: false,
+    });
+  };
+
+  const addToPortfolio = (addStock) => {
+    console.log("add to portfolio", addStock);
+    setAllData({
+      ...allData,
+      portfolio: allData.portfolio.concat(addStock),
+    });
+    cancelAdd();
+  };
+
   return (
     <>
       <div
@@ -141,7 +167,7 @@ function SearchResult() {
         <div className="w-1/3 h-screen">
           <div>
             <button>Add to Watchlist</button>
-            <button>Add to Portfolio</button>
+            <button onClick={showAddToPortfolioScreen}>Add to Portfolio</button>
           </div>
           <h2>Related News</h2>
           <div id="news" className="p-3 h-screen overflow-scroll">
@@ -149,6 +175,13 @@ function SearchResult() {
           </div>
         </div>
       </div>
+      <AddToPortfolio
+        display={addPortfolio.display}
+        info={addPortfolio.stock}
+        date={addPortfolio.date}
+        fnCancel={cancelAdd}
+        fnAdd={addToPortfolio}
+      />
     </>
   );
 }
