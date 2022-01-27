@@ -176,34 +176,6 @@ function SearchResult() {
     setState("displayResults");
   };
 
-  if (state === "displayResults") {
-    return (
-      <>
-        <div
-          id="SearchResult"
-          className="w-10/12 mx-auto py-2 flex justify-around gap-5"
-        >
-          <div id="StockInfo" className="w-2/3">
-            <BigInfoCard data={stock} key={stock.tickerDetails.ticker} />
-          </div>
-          <div className="w-1/3 h-screen">
-            <div>
-              <button onClick={showAddToWatchlistScreen}>
-                Add to Watchlist
-              </button>
-              <button onClick={showAddToPortfolioScreen}>
-                Add to Portfolio
-              </button>
-            </div>
-            <h2>Related News</h2>
-            <div id="news" className="p-3 h-screen overflow-scroll">
-              {newsCards}
-            </div>
-          </div>
-        </div>
-      </>
-    );
-  }
   if (state === "addWatchlist") {
     return (
       <AddToWatchlist
@@ -226,6 +198,29 @@ function SearchResult() {
       />
     );
   }
+
+  return (
+    <>
+      <div
+        id="SearchResult"
+        className="w-10/12 mx-auto py-2 flex justify-around gap-5"
+      >
+        <div id="StockInfo" className="w-2/3">
+          <BigInfoCard data={stock} key={stock.tickerDetails.ticker} />
+        </div>
+        <div className="w-1/3 h-screen">
+          <div>
+            <button onClick={showAddToWatchlistScreen}>Add to Watchlist</button>
+            <button onClick={showAddToPortfolioScreen}>Add to Portfolio</button>
+          </div>
+          <h2>Related News</h2>
+          <div id="news" className="p-3 h-screen overflow-scroll">
+            {newsCards}
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }
 
 export default SearchResult;
