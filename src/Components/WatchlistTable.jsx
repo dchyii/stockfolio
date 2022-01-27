@@ -15,7 +15,11 @@ function WatchlistTable(props) {
 
   const data = props.data.map((row, i) => {
     return (
-      <tr key={row.symbol} rowid={row.symbol}>
+      <tr
+        key={row.symbol}
+        rowid={row.symbol}
+        className="even:bg-orange-50 odd:bg-slate-50 hover:bg-orange-200"
+      >
         <td colSpan={2}>
           <Link to={`/search/${row.symbol}`}>
             {row.name} ({row.symbol})
@@ -71,7 +75,7 @@ function WatchlistTable(props) {
             displayType="text"
           />
         </td>
-        <td>
+        <td className="w-12">
           <svg
             id={i}
             onClick={(event) => props.fnShowAddToPortfolioScreen(event)}
@@ -88,7 +92,7 @@ function WatchlistTable(props) {
             />
           </svg>
         </td>
-        <td>
+        <td className="w-12">
           <svg
             id={i}
             onClick={(event) => props.fnShowRemoveConfirmationScreen(event)}
@@ -110,9 +114,9 @@ function WatchlistTable(props) {
   });
 
   return (
-    <table className="w-4/5 mx-auto table-fixed border border-orange-400">
+    <table className="w-10/12 mx-auto table-auto border border-orange-400 border-collapse">
       <thead>
-        <tr>
+        <tr className=" border-b-2 border-orange-400">
           {header}
           <th> </th>
           <th> </th>

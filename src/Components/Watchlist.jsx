@@ -118,6 +118,9 @@ function Watchlist() {
   return (
     <div>
       <SearchBar />
+      <h2 className="font-extrabold text-orange-400 text-3xl pb-2">
+        Watchlist
+      </h2>
       <WatchlistTable
         header={tableHeader}
         data={watchlistData}
