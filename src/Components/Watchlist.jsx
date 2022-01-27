@@ -7,20 +7,18 @@ import WatchlistTable from "./WatchlistTable";
 
 function Watchlist() {
   const [allData, setAllData] = useOutletContext();
-
-  console.log("all data", allData);
+  const [state, setState] = useState("displayWatchlist");
 
   const watchlistStocks = allData.watchlist;
   const prevClosePrices = allData.prevClosePrices;
   const date = allData.date;
 
   const [confirmRemove, setConfirmRemove] = useState({
-    display: false,
     stock: "",
     list: "Watchlist",
   });
+
   const [addPortfolio, setAddPortfolio] = useState({
-    display: false,
     stock: "",
     date: date,
   });
@@ -47,17 +45,17 @@ function Watchlist() {
   const showAddToPortfolioScreen = (event) => {
     setAddPortfolio({
       ...addPortfolio,
-      display: true,
       stock: watchlistData[event.target.id],
     });
+    setState("addPortfolio");
   };
 
   const cancelAdd = () => {
     setAddPortfolio({
       ...addPortfolio,
-      display: false,
       stock: "",
     });
+    setState("displayWatchlist");
   };
 
   const addToPortfolio = (addStock) => {
@@ -72,17 +70,17 @@ function Watchlist() {
   const showRemoveConfirmationScreen = (event) => {
     setConfirmRemove({
       ...confirmRemove,
-      display: true,
       stock: watchlistStocks[event.target.id],
     });
+    setState("removeConfirmation");
   };
 
   const cancelRemove = () => {
     setConfirmRemove({
       ...confirmRemove,
-      display: false,
       stock: "",
     });
+    setState("displayWatchlist");
   };
 
   const removeFromWatchlist = (removedStock) => {
@@ -95,6 +93,28 @@ function Watchlist() {
     cancelRemove();
   };
 
+  if (state === "addPortfolio") {
+    return (
+      <AddToPortfolio
+        display={addPortfolio.display}
+        info={addPortfolio.stock}
+        date={addPortfolio.date}
+        fnCancel={cancelAdd}
+        fnAdd={addToPortfolio}
+      />
+    );
+  }
+  if (state === "removeConfirmation") {
+    return (
+      <ConfirmRemove
+        info={confirmRemove.stock}
+        list={confirmRemove.list}
+        fnCancel={cancelRemove}
+        fnRemove={removeFromWatchlist}
+      />
+    );
+  }
+
   return (
     <div>
       <SearchBar />
@@ -105,20 +125,6 @@ function Watchlist() {
         fnShowAddToPortfolioScreen={showAddToPortfolioScreen}
       />
       <p>Prices updated on {date?.format("DD MMM YYYY")}</p>
-      <AddToPortfolio
-        display={addPortfolio.display}
-        info={addPortfolio.stock}
-        date={addPortfolio.date}
-        fnCancel={cancelAdd}
-        fnAdd={addToPortfolio}
-      />
-      <ConfirmRemove
-        display={confirmRemove.display}
-        info={confirmRemove.stock}
-        list={confirmRemove.list}
-        fnCancel={cancelRemove}
-        fnRemove={removeFromWatchlist}
-      />
     </div>
   );
 }

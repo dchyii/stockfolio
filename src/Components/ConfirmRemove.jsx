@@ -3,7 +3,7 @@ function ConfirmRemove(props) {
 
   return (
     <div
-      style={{ display: props.display ? "" : "none" }}
+      // style={{ display: props.display ? "" : "none" }}
       className="border-orange-400 border w-1/2 mx-auto"
     >
       <h2>Confirmation</h2>
