@@ -16,6 +16,11 @@ function SearchBar(props) {
           type="text"
           placeholder="Search Ticker Symbol"
           className="w-full border-2 px-3 border-gray-300 focus:outline-orange-400 bg-white h-10 rounded-lg focus:shadow-lg"
+          onKeyPress={(e) => {
+            if (e.key === "Enter") {
+              navToSearchResult();
+            }
+          }}
           ref={searchRef}
         />
         <button
