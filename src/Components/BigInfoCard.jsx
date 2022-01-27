@@ -1,3 +1,5 @@
+import NumberFormat from "react-number-format";
+
 function BigInfoCard(props) {
   const key = process.env.REACT_APP_APIKEY;
 
@@ -18,7 +20,16 @@ function BigInfoCard(props) {
         <h2 className="text-orange-400">
           {tickerDetails?.name} ({tickerDetails?.ticker})
         </h2>
-        <h2>${tickerPrice?.c}</h2>
+        <h2>
+          <NumberFormat
+            value={tickerPrice?.c}
+            thousandSeparator={true}
+            prefix="$"
+            fixedDecimalScale={true}
+            decimalScale={2}
+            displayType="text"
+          />
+        </h2>
       </div>
       <p className="my-3 text-left">
         {tickerDetails?.address?.address1}

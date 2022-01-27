@@ -25,44 +25,56 @@ function AddToPortfolio(props) {
       className="border-orange-400 border w-1/2 mx-auto"
     >
       <h2>Add to Portfolio</h2>
-      <form>
-        <div className="block w-4/5 text-left mx-auto">
-          Name: {props.info.name}
-        </div>
-        <div className="block w-4/5 text-left mx-auto">
-          Symbol: {props.info.symbol}
-        </div>
-        <label className="block w-4/5 text-left mx-auto">
-          Purchase Price:{"  "}
-          <input
-            type="number"
-            id="price"
-            defaultValue={props.info.close}
-            className="text-right pr-3 w-1/2"
-            ref={purchasePriceRef}
-          />
-        </label>
-        <label className="block w-4/5 text-left mx-auto">
-          Purchase Units:{"  "}
-          <input
-            type="number"
-            id="units"
-            defaultValue={0}
-            className="text-right pr-3 w-1/2"
-            ref={purchaseUnitsRef}
-          />
-        </label>
-        <label className="block w-4/5 text-left mx-auto">
-          Purchase Date:{"  "}
-          <input
-            type="date"
-            id="units"
-            defaultValue={props.date.format("YYYY-MM-DD")}
-            className="text-right pr-3 w-1/2"
-            ref={purchaseDateRef}
-          />
-        </label>
-      </form>
+      <table className="mx-auto w-full table-auto">
+        <tbody>
+          <tr>
+            <td>Name: </td>
+            <td>{props.info.name}</td>
+          </tr>
+          <tr>
+            <td>Symbol: </td>
+            <td>{props.info.symbol}</td>
+          </tr>
+          <tr>
+            <td>Purchase Price ($): </td>
+            <td>
+              <input
+                type="number"
+                id="price"
+                defaultValue={props.info.close}
+                className="text-right pr-3 w-1/2"
+                ref={purchasePriceRef}
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>Purchase Units: </td>
+            <td>
+              {" "}
+              <input
+                type="number"
+                id="units"
+                defaultValue={0}
+                className="text-right pr-3 w-1/2"
+                ref={purchaseUnitsRef}
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>Purchase Date</td>
+            <td>
+              <input
+                type="date"
+                id="units"
+                defaultValue={props.date.format("YYYY-MM-DD")}
+                className="text-right pr-3 w-1/2"
+                ref={purchaseDateRef}
+              />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
       <div id="buttons" className="flex justify-around">
         <button onClick={props.fnCancel}>Cancel</button>
         <button className="text-green-600" onClick={submitNewStock}>

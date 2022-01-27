@@ -1,4 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
+import NumberFormat from "react-number-format";
 
 function PortfolioTable(props) {
   const header = props.header.map((col, i) => {
@@ -20,13 +21,58 @@ function PortfolioTable(props) {
             {row.name} ({row.symbol})
           </Link>
         </td>
-        <td>{row.purchaseUnits}</td>
-        <td>{row.purchasePrice}</td>
-        <td>{row.close}</td>
-        <td>{row.dividendsTillDate}</td>
         <td>
-          {(row.close - row.purchasePrice + row.dividendsTillDate) *
-            row.purchaseUnits || 0}
+          <NumberFormat
+            value={row.purchaseUnits}
+            thousandSeparator={true}
+            prefix=""
+            fixedDecimalScale={false}
+            decimalScale={2}
+            displayType="text"
+          />
+        </td>
+        <td>
+          <NumberFormat
+            value={row.purchasePrice}
+            thousandSeparator={true}
+            prefix="$"
+            fixedDecimalScale={true}
+            decimalScale={2}
+            displayType="text"
+          />
+        </td>
+        <td>
+          <NumberFormat
+            value={row.close}
+            thousandSeparator={true}
+            prefix="$"
+            fixedDecimalScale={true}
+            decimalScale={2}
+            displayType="text"
+          />
+        </td>
+        <td>
+          <NumberFormat
+            value={row.dividendsTillDate}
+            thousandSeparator={true}
+            prefix="$"
+            fixedDecimalScale={true}
+            decimalScale={2}
+            displayType="text"
+          />
+        </td>
+        <td>
+          <NumberFormat
+            value={
+              (row.close - row.purchasePrice + row.dividendsTillDate) *
+                row.purchaseUnits || 0
+            }
+            thousandSeparator={true}
+            prefix="$"
+            fixedDecimalScale={true}
+            decimalScale={2}
+            displayType="text"
+          />
         </td>
         <td>
           <svg

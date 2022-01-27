@@ -1,4 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
+import NumberFormat from "react-number-format";
 
 function WatchlistTable(props) {
   const header = props.header.map((col, i) => {
@@ -20,11 +21,56 @@ function WatchlistTable(props) {
             {row.name} ({row.symbol})
           </Link>
         </td>
-        <td>{row.open}</td>
-        <td>{row.high}</td>
-        <td>{row.low}</td>
-        <td>{row.close}</td>
-        <td>{row.volume}</td>
+        <td>
+          <NumberFormat
+            value={row.open}
+            thousandSeparator={true}
+            prefix="$"
+            fixedDecimalScale={true}
+            decimalScale={2}
+            displayType="text"
+          />
+        </td>
+        <td>
+          <NumberFormat
+            value={row.high}
+            thousandSeparator={true}
+            prefix="$"
+            fixedDecimalScale={true}
+            decimalScale={2}
+            displayType="text"
+          />
+        </td>
+        <td>
+          <NumberFormat
+            value={row.low}
+            thousandSeparator={true}
+            prefix="$"
+            fixedDecimalScale={true}
+            decimalScale={2}
+            displayType="text"
+          />
+        </td>
+        <td>
+          <NumberFormat
+            value={row.close}
+            thousandSeparator={true}
+            prefix="$"
+            fixedDecimalScale={true}
+            decimalScale={2}
+            displayType="text"
+          />
+        </td>
+        <td>
+          <NumberFormat
+            value={row.volume}
+            thousandSeparator={true}
+            prefix=""
+            fixedDecimalScale={true}
+            decimalScale={0}
+            displayType="text"
+          />
+        </td>
         <td>
           <svg
             id={i}

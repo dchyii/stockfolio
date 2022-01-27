@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import NumberFormat from "react-number-format";
 
 function AmendPortfolio(props) {
   const purchaseUnitsRef = useRef();
@@ -27,68 +28,81 @@ function AmendPortfolio(props) {
   return (
     <div
       style={{ display: props.display ? "" : "none" }}
-      //   style={{ display: "" }}
       className="border-orange-400 border w-1/2 mx-auto"
     >
       <h2>Amend Portfolio</h2>
-      <form>
-        <div className="block w-4/5 text-left mx-auto">
-          Name: {props.info.name}
-        </div>
-        <div className="block w-4/5 text-left mx-auto">
-          Symbol: {props.info.symbol}
-        </div>
-        <label className="block w-4/5 text-left mx-auto">
-          Purchase Units:{"  "}
-          <input
-            type="number"
-            id="purchaseUnits"
-            defaultValue={props.info.purchaseUnits}
-            className="text-right pr-3 w-1/2"
-            ref={purchaseUnitsRef}
-          />
-        </label>
-        <label className="block w-4/5 text-left mx-auto">
-          Purchase Price:{"  "}
-          <input
-            type="number"
-            id="purchasePrice"
-            defaultValue={props.info.purchasePrice}
-            className="text-right pr-3 w-1/2"
-            ref={purchasePriceRef}
-          />
-        </label>
-        <label className="block w-4/5 text-left mx-auto">
-          Purchase Date:{"  "}
-          <input
-            type="date"
-            id="purchaseDate"
-            defaultValue={props.info.purchaseDate}
-            className="text-right pr-3 w-1/2"
-            ref={purchaseDateRef}
-          />
-        </label>
-        <label className="block w-4/5 text-left mx-auto">
-          Total Dividends:{"  "}
-          <input
-            type="number"
-            id="price"
-            defaultValue={props.info.dividendsTillDate}
-            className="text-right pr-3 w-1/2"
-            ref={dividendsRef}
-          />
-        </label>
-        <label className="block w-4/5 text-left mx-auto">
-          Last Dividend Date:{"  "}
-          <input
-            type="date"
-            id="lastDividendUpdateDate"
-            defaultValue={props.info.lastDividendUpdateDate}
-            className="text-right pr-3 w-1/2"
-            ref={dividendDateRef}
-          />
-        </label>
-      </form>
+      <table className="mx-auto w-full table-auto">
+        <tbody>
+          <tr>
+            <td>Name: </td>
+            <td>{props.info.name}</td>
+          </tr>
+          <tr>
+            <td>Symbol: </td>
+            <td>{props.info.symbol}</td>
+          </tr>
+          <tr>
+            <td>Purchase Units: </td>
+            <td>
+              <input
+                type="number"
+                id="purchaseUnits"
+                defaultValue={props.info.purchaseUnits}
+                className="text-right pr-3 w-1/2"
+                ref={purchaseUnitsRef}
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>Purchase Price ($): </td>
+            <td>
+              <input
+                type="number"
+                id="purchasePrice"
+                defaultValue={props.info.purchasePrice}
+                className="text-right pr-3 w-1/2"
+                ref={purchasePriceRef}
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>Purchase Date: </td>
+            <td>
+              <input
+                type="date"
+                id="purchaseDate"
+                defaultValue={props.info.purchaseDate}
+                className="text-right pr-3 w-1/2"
+                ref={purchaseDateRef}
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>Total Dividends ($): </td>
+            <td>
+              <input
+                type="number"
+                id="price"
+                defaultValue={props.info.dividendsTillDate}
+                className="text-right pr-3 w-1/2"
+                ref={dividendsRef}
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>Last Dividend Date: </td>
+            <td>
+              <input
+                type="date"
+                id="lastDividendUpdateDate"
+                defaultValue={props.info.lastDividendUpdateDate}
+                className="text-right pr-3 w-1/2"
+                ref={dividendDateRef}
+              />
+            </td>
+          </tr>
+        </tbody>
+      </table>
       <div id="buttons" className="flex justify-around">
         <button onClick={props.fnCancel}>Cancel</button>
         <button onClick={amendData} className="text-green-600">

@@ -5,6 +5,7 @@ import allPriceData from "../Data/allPriceData";
 import watchlistStocks from "../Data/watchlistStocks";
 import SearchBar from "./SearchBar";
 import portfolioStocks from "../Data/portfolioStocks";
+import { TailSpin } from "react-loader-spinner";
 
 const KEY = process.env.REACT_APP_APIKEY;
 
@@ -65,6 +66,7 @@ function Home() {
 
   return (
     <div>
+      {/* <TailSpin ariaLabel="loading-indicator" color="orange" /> */}
       <Outlet context={[allData, setAllData]} />
     </div>
   );
