@@ -26,10 +26,7 @@ function AmendPortfolio(props) {
   };
 
   return (
-    <div
-      style={{ display: props.display ? "" : "none" }}
-      className="border-orange-400 border w-1/2 mx-auto"
-    >
+    <div className="border-orange-400 border w-4/5 mx-auto">
       <h2>Amend Portfolio</h2>
       <table className="mx-auto w-full table-auto">
         <tbody>

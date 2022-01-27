@@ -7,13 +7,13 @@ import AmendPortfolio from "./AmendPortfolio";
 
 function Portfolio() {
   const [allData, setAllData] = useOutletContext();
+  const [state, setState] = useState("displayPortfolio");
+
   const [confirmRemove, setConfirmRemove] = useState({
-    display: false,
     stock: "",
     list: "Portfolio",
   });
   const [amend, setAmend] = useState({
-    display: false,
     stock: "",
     index: -1,
   });
@@ -45,17 +45,17 @@ function Portfolio() {
   const showRemoveConfirmationScreen = (event) => {
     setConfirmRemove({
       ...confirmRemove,
-      display: true,
       stock: portfolioData[event.target.id],
     });
+    setState("removeConfirmation");
   };
 
   const cancel = () => {
     setConfirmRemove({
       ...confirmRemove,
-      display: false,
       stock: "",
     });
+    setState("displayPortfolio");
   };
 
   const removeFromPortfolio = (removedStock) => {
@@ -67,40 +67,63 @@ function Portfolio() {
     });
     setConfirmRemove({
       ...confirmRemove,
-      display: false,
       stock: "",
     });
+    setState("displayPortfolio");
   };
 
   const showAmendScreen = (event) => {
     setAmend({
       ...amend,
-      display: true,
       stock: portfolioData[event.target.id],
       index: event.target.id,
     });
+    setState("amendPortfolio");
   };
 
   const cancelAmend = () => {
     setAmend({
       ...amend,
-      display: false,
       stock: "",
       index: -1,
     });
+    setState("displayPortfolio");
   };
 
   const amendPortfolio = (amendedData) => {
     const updatedPortfolio = allData.portfolio;
     updatedPortfolio[amendedData.index] = amendedData.data;
 
-    console.log("updated portfolio", updatedPortfolio);
     setAllData({
       ...allData,
       portfolio: updatedPortfolio,
     });
     cancelAmend();
   };
+
+  if (state === "removeConfirmation") {
+    return (
+      <ConfirmRemove
+        display={confirmRemove.display}
+        info={confirmRemove.stock}
+        list={confirmRemove.list}
+        fnCancel={cancel}
+        fnRemove={removeFromPortfolio}
+      />
+    );
+  }
+
+  if (state === "amendPortfolio") {
+    return (
+      <AmendPortfolio
+        display={amend.display}
+        info={amend.stock}
+        index={amend.index}
+        fnCancel={cancelAmend}
+        fnAmend={amendPortfolio}
+      />
+    );
+  }
 
   return (
     <div>
@@ -112,20 +135,6 @@ function Portfolio() {
         fnShowAmendScreen={showAmendScreen}
       />
       <p>Prices updated on {date?.format("DD MMM YYYY")}</p>
-      <ConfirmRemove
-        display={confirmRemove.display}
-        info={confirmRemove.stock}
-        list={confirmRemove.list}
-        fnCancel={cancel}
-        fnRemove={removeFromPortfolio}
-      />
-      <AmendPortfolio
-        display={amend.display}
-        info={amend.stock}
-        index={amend.index}
-        fnCancel={cancelAmend}
-        fnAmend={amendPortfolio}
-      />
     </div>
   );
 }
