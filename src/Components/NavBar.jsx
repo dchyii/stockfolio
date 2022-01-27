@@ -29,9 +29,27 @@ function NavBar() {
             </Link>
           </div>
           <div id="links" className="w-1/3 text-base flex justify-between">
-            <Link to="watchlist"> Watchlist </Link>
-            <Link to="portfolio"> Portfolio </Link>
-            <Link to="about"> About </Link>
+            <div className="w-1/3 inline-block">
+              <Link to="watchlist">
+                <p className="hover:text-orange-400 hover:font-extrabold">
+                  Watchlist
+                </p>
+              </Link>
+            </div>
+            <div className="w-1/3 inline-block">
+              <Link to="portfolio">
+                <p className="hover:text-orange-400 hover:font-extrabold">
+                  Portfolio
+                </p>
+              </Link>
+            </div>
+            <div className="w-1/3 inline-block">
+              <Link to="about">
+                <p className="hover:text-orange-400 hover:font-extrabold">
+                  About
+                </p>
+              </Link>
+            </div>
           </div>
         </nav>
       </div>
