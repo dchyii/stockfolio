@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import dayjs from "dayjs";
 
 function AddToPortfolio(props) {
@@ -20,54 +20,53 @@ function AddToPortfolio(props) {
   };
 
   return (
-    <div
-      // style={{ display: props.display ? "" : "none" }}
-      className="border-orange-400 border w-1/2 mx-auto"
-    >
-      <h2>Add to Portfolio</h2>
+    <div className="border-orange-400 border w-4/5 mx-auto mt-5 rounded-2xl shadow-lg bg-white">
+      <h2 className="font-extrabold text-orange-400 text-3xl pb-2">
+        Add to Portfolio
+      </h2>
       <table className="mx-auto w-full table-auto">
         <tbody>
           <tr>
-            <td>Name: </td>
-            <td>{props.info.name}</td>
+            <td className="w-1/2 text-right pr-3">Name: </td>
+            <td className="w-1/2 text-left pl-3">{props.info.name}</td>
           </tr>
           <tr>
-            <td>Symbol: </td>
-            <td>{props.info.symbol}</td>
+            <td className="w-1/2 text-right pr-3">Symbol: </td>
+            <td className="w-1/2 text-left pl-3">{props.info.symbol}</td>
           </tr>
           <tr>
-            <td>Purchase Price ($): </td>
-            <td>
+            <td className="w-1/2 text-right pr-3">Purchase Price ($): </td>
+            <td className="w-1/2 text-left pl-3">
               <input
                 type="number"
                 id="price"
                 defaultValue={props.info.close}
-                className="text-right pr-3 w-1/2"
+                className="text-right pr-1 focus:outline-orange-400"
                 ref={purchasePriceRef}
               />
             </td>
           </tr>
           <tr>
-            <td>Purchase Units: </td>
-            <td>
+            <td className="w-1/2 text-right pr-3">Purchase Units: </td>
+            <td className="w-1/2 text-left pl-3">
               {" "}
               <input
                 type="number"
                 id="units"
                 defaultValue={0}
-                className="text-right pr-3 w-1/2"
+                className="text-right pr-1 focus:outline-orange-400"
                 ref={purchaseUnitsRef}
               />
             </td>
           </tr>
           <tr>
-            <td>Purchase Date</td>
-            <td>
+            <td className="w-1/2 text-right pr-3">Purchase Date</td>
+            <td className="w-1/2 text-left pl-3">
               <input
                 type="date"
                 id="units"
                 defaultValue={props.date.format("YYYY-MM-DD")}
-                className="text-right pr-3 w-1/2"
+                className="text-right pr-1 focus:outline-orange-400"
                 ref={purchaseDateRef}
               />
             </td>
@@ -75,9 +74,17 @@ function AddToPortfolio(props) {
         </tbody>
       </table>
 
-      <div id="buttons" className="flex justify-around">
-        <button onClick={props.fnCancel}>Cancel</button>
-        <button className="text-green-600" onClick={submitNewStock}>
+      <div id="buttons" className="flex justify-around p-3">
+        <button
+          onClick={props.fnCancel}
+          className="py-1 w-24 text-white bg-gray-300 hover:bg-gray-500 rounded-full"
+        >
+          Cancel
+        </button>
+        <button
+          onClick={submitNewStock}
+          className="py-1 w-24 text-white bg-green-300 hover:bg-green-500 hover:font-extrabold  rounded-full"
+        >
           Add
         </button>
       </div>
