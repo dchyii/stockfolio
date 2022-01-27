@@ -9,6 +9,7 @@ import BigInfoCard from "./BigInfoCard";
 import ErrorScreen from "./ErrorScreen";
 import LoadScreen from "./LoadScreen";
 import NewsCard from "./NewsCard";
+import NoResults from "./NoResults";
 
 function SearchResult() {
   const { symbolCaseInsensitive } = useParams();
@@ -69,6 +70,8 @@ function SearchResult() {
         return { ...loadStatus, details: "error" };
       case "NEWS_ERROR":
         return { ...loadStatus, news: "error" };
+      case "DETAILS_NOT_FOUND":
+        return { ...loadStatus, details: "notFound" };
       default:
         return loadStatus;
     }
@@ -110,17 +113,25 @@ function SearchResult() {
       console.log("fetching ticker details");
       fetch(urlTickerDetails)
         .then((response) => {
-          if (!response.ok) {
-            return;
-          }
           console.log("processing details");
           return response.json();
         })
         .then((data) => {
           console.log("ticker details fetched");
-          const fetchedData = data.results;
-          dispatch({ type: "UPDATE_TICKER_DETAILS", fetchedData: fetchedData });
-          dispatchLoadStatus({ type: "DETAILS_LOADED" });
+          if (data.status === "ERROR") {
+            dispatchLoadStatus({ type: "DETAILS_ERROR" });
+          }
+          if (data.status === "NOT_FOUND") {
+            dispatchLoadStatus({ type: "DETAILS_NOT_FOUND" });
+          }
+          if (data.status === "OK") {
+            const fetchedData = data.results;
+            dispatch({
+              type: "UPDATE_TICKER_DETAILS",
+              fetchedData: fetchedData,
+            });
+            dispatchLoadStatus({ type: "DETAILS_LOADED" });
+          }
         })
         .catch((error) => {
           dispatchLoadStatus({ type: "DETAILS_ERROR" });
@@ -143,17 +154,19 @@ function SearchResult() {
       console.log("fetching ticker news");
       fetch(urlTickerNews)
         .then((response) => {
-          if (!response.ok) {
-            return;
-          }
           console.log("processing news");
           return response.json();
         })
         .then((data) => {
           console.log("ticker news fetched");
-          const fetchedData = data.results;
-          dispatch({ type: "UPDATE_TICKER_NEWS", fetchedData: fetchedData });
-          dispatchLoadStatus({ type: "NEWS_LOADED" });
+          if (data.status === "ERROR") {
+            dispatchLoadStatus({ type: "NEWS_ERROR" });
+          }
+          if (data.status === "OK") {
+            const fetchedData = data.results;
+            dispatch({ type: "UPDATE_TICKER_NEWS", fetchedData: fetchedData });
+            dispatchLoadStatus({ type: "NEWS_LOADED" });
+          }
         })
         .catch((error) => {
           dispatchLoadStatus({ type: "NEWS_ERROR" });
@@ -168,17 +181,14 @@ function SearchResult() {
   //! ^^^ uncomment on production ^^^ !//
 
   const showAddToPortfolioScreen = () => {
-    console.log("add to portfolio screen");
     setState("addPortfolio");
   };
 
   const cancelAdd = () => {
-    console.log("cancel add to portfolio");
     setState("displayResults");
   };
 
   const addToPortfolio = (addStock) => {
-    console.log("add to portfolio", addStock);
     setAllData({
       ...allData,
       portfolio: allData.portfolio.concat(addStock),
@@ -187,13 +197,11 @@ function SearchResult() {
   };
 
   const addToWatchlist = (addWatch) => {
-    console.log("add to watchlist", addWatch);
     if (
       allData.watchlist.findIndex(
         (watchlistItem) => watchlistItem.symbol === addWatch.symbol
       ) === -1
     ) {
-      console.log("here");
       setAllData({
         ...allData,
         watchlist: allData.watchlist.concat(addWatch),
@@ -207,7 +215,6 @@ function SearchResult() {
   };
 
   const cancelWatch = () => {
-    console.log("cancel watchlist");
     setState("displayResults");
   };
 
@@ -219,6 +226,10 @@ function SearchResult() {
 
   if (Object.values(loadStatus).includes("error")) {
     return <ErrorScreen />;
+  }
+
+  if (Object.values(loadStatus).includes("notFound")) {
+    return <NoResults />;
   }
 
   if (state === "addWatchlist") {
@@ -245,7 +256,6 @@ function SearchResult() {
   }
 
   let newsCards = "";
-  console.log("ticker news", stock?.tickerNews);
   if (stock?.tickerNews.length > 0) {
     newsCards = stock.tickerNews.map((news) => {
       return <NewsCard data={news} key={news.id} />;
