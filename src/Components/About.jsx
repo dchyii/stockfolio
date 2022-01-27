@@ -1,3 +1,5 @@
+import GitHubButton from "react-github-btn";
+
 function Contact() {
   return (
     <div className="pt-5 w-10/12 mx-auto">
@@ -11,6 +13,13 @@ function Contact() {
       </p>
       <br />
       <p>This site is created using ReactJS.</p>
+      <br />
+      <GitHubButton
+        href="https://github.com/dchyii"
+        aria-label="Follow @dchyii on GitHub"
+      >
+        Follow @dchyii
+      </GitHubButton>
       <h3 className="font-extrabold text-orange-400 text-xl p-3">Credits</h3>
       <table className="table-auto w-fit mx-auto">
         <tbody>
