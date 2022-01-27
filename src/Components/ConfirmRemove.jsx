@@ -2,21 +2,30 @@ function ConfirmRemove(props) {
   const removedStock = props.info.symbol;
 
   return (
-    <div
-      // style={{ display: props.display ? "" : "none" }}
-      className="border-orange-400 border w-1/2 mx-auto"
-    >
-      <h2>Confirmation</h2>
-      <p>
-        You are about to remove {props.info.name} ({props.info.symbol}) from
-        your {props.list}.
-      </p>
-      <p>Do you wish to proceed?</p>
-      <div className="buttons flex justify-around">
-        <button onClick={props.fnCancel}>Cancel</button>
+    <div className="border-orange-400 border w-1/2 mx-auto mt-5">
+      <h2 className="font-extrabold text-orange-400 text-3xl pb-2">
+        Confirmation
+      </h2>
+      <div className="p-2">
+        <p>
+          You are about to remove{" "}
+          <span className="text-orange-400 font-bold">
+            {props.info.name} ({props.info.symbol})
+          </span>{" "}
+          from your {props.list}.
+        </p>
+        <p>Do you wish to proceed?</p>
+      </div>
+      <div className="buttons flex justify-around p-2">
+        <button
+          onClick={props.fnCancel}
+          className="py-1 w-24 text-white bg-gray-300 hover:bg-gray-500 rounded-full"
+        >
+          Cancel
+        </button>
         <button
           onClick={() => props.fnRemove(removedStock)}
-          className="text-red-600"
+          className="py-1 w-24 text-white bg-red-500 hover:bg-orange-500 hover:font-extrabold  rounded-full"
         >
           Proceed
         </button>
