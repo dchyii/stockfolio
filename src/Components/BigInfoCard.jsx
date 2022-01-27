@@ -41,6 +41,8 @@ function BigInfoCard(props) {
         <a
           href={tickerDetails?.homepage_url}
           className="hover:text-blue-500 hover:underline"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           {tickerDetails?.homepage_url}
         </a>

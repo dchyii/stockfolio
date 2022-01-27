@@ -33,6 +33,8 @@ function NewsCard(props) {
         <a
           className="hover:text-blue-500 hover:underline"
           href={tickerNews.article_url}
+          target="_blank"
+          rel="noopener noreferrer"
         >
           {tickerNews.title}
         </a>
