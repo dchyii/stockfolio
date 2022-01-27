@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function NavBar() {
   return (
@@ -11,8 +10,22 @@ function NavBar() {
         >
           <div id="logo" className="text-xl">
             <Link to="/">
-              [Logo] <span className="text-orange-400 font-bold">Stock</span>
+              <span className="text-orange-400 font-bold">Stock</span>
               Folio
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6 mb-2 inline"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+                />
+              </svg>
             </Link>
           </div>
           <div id="links" className="w-1/3 text-base flex justify-between">
