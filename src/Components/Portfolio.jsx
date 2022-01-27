@@ -128,6 +128,9 @@ function Portfolio() {
   return (
     <div>
       <SearchBar />
+      <h2 className="font-extrabold text-orange-400 text-3xl pb-2">
+        Portfolio
+      </h2>
       <PortfolioTable
         header={tableHeader}
         data={portfolioData}
