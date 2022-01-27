@@ -20,8 +20,23 @@ function Contact() {
               <a
                 href="https://polygon.io/"
                 className="hover:text-blue-500 hover:underline"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 polygon.io
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td className="w-1/2 pr-2 text-right">Icons</td>
+            <td className="w-1/2 pl-2 text-left">
+              <a
+                href="https://heroicons.com/"
+                className="hover:text-blue-500 hover:underline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                heroicons
               </a>
             </td>
           </tr>

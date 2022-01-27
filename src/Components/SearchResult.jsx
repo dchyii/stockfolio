@@ -270,10 +270,13 @@ function SearchResult() {
       className="w-10/12 mx-auto py-2 justify-around flex h-full"
     >
       <div className="w-8/12">
+        <div id="StockInfo" className="p-2 h-5/6">
+          <BigInfoCard data={stock} key={stock.tickerDetails.ticker} />
+        </div>
         <div className="pb-3">
           <button
             onClick={showAddToWatchlistScreen}
-            className="py-1 mx-1 w-48 text-center text-slate-700 bg-slate-100 border-2 border-slate-300 hover:bg-orange-400 hover:font-extrabold hover:text-white rounded-full"
+            className="py-1 m-2 w-48 text-center text-slate-700 bg-slate-100 border-2 border-slate-300 hover:bg-orange-400 hover:font-extrabold hover:text-white rounded-full"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -293,7 +296,7 @@ function SearchResult() {
           </button>
           <button
             onClick={showAddToPortfolioScreen}
-            className="py-1 mx-1 w-48 text-center text-slate-700 bg-slate-100 border-2 border-slate-300 hover:bg-orange-400 hover:font-extrabold hover:text-white rounded-full"
+            className="py-1 m-2 w-48 text-center text-slate-700 bg-slate-100 border-2 border-slate-300 hover:bg-orange-400 hover:font-extrabold hover:text-white rounded-full"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -311,9 +314,6 @@ function SearchResult() {
             </svg>
             Add to Portfolio
           </button>
-        </div>
-        <div id="StockInfo" className="p-2 h-5/6">
-          <BigInfoCard data={stock} key={stock.tickerDetails.ticker} />
         </div>
       </div>
       <div className="w-4/12">
