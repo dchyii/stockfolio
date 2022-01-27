@@ -5,10 +5,12 @@ function Search() {
   const [allData, setAllData] = useOutletContext();
 
   return (
-    <>
+    <div>
       <SearchBar />
-      <Outlet context={[allData, setAllData]} />
-    </>
+      <div className="h-screen -mt-32 pt-32">
+        <Outlet context={[allData, setAllData]} />
+      </div>
+    </div>
   );
 }
 

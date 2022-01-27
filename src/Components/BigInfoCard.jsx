@@ -9,7 +9,7 @@ function BigInfoCard(props) {
   return (
     <div
       id="BigInfoCard"
-      className="outline outline-1 outline-orange-400 rounded-md h-fit p-3 bg-orange-50"
+      className="border border-orange-400 rounded-2xl shadow-xl h-full p-3 bg-orange-50 overflow-scroll"
     >
       <img
         src={tickerDetails?.branding?.logo_url + `?apiKey=${key}`}
@@ -45,7 +45,17 @@ function BigInfoCard(props) {
           {tickerDetails?.homepage_url}
         </a>
       </p>
-      <p className="my-3 text-left">Market Cap: {tickerDetails?.market_cap}</p>
+      <p className="my-3 text-left">
+        Market Cap:{" "}
+        <NumberFormat
+          value={tickerDetails?.market_cap}
+          thousandSeparator={true}
+          prefix="$"
+          fixedDecimalScale={true}
+          decimalScale={2}
+          displayType="text"
+        />
+      </p>
 
       <p className="my-3 text-justify">{tickerDetails?.description}</p>
     </div>

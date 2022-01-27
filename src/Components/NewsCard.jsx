@@ -13,7 +13,7 @@ function NewsCard(props) {
       <button
         key={ticker}
         onClick={navToSearchResult}
-        className="outline outline-1 m-1 p-1 text-xs"
+        className="border border-orange-400 m-1 p-1 text-xs"
       >
         {ticker}
       </button>
@@ -21,15 +21,26 @@ function NewsCard(props) {
   });
 
   return (
-    <div className="outline outline-1 outline-orange-400 rounded-md p-2 my-2">
-      <div className="newsCardImage">
-        <img src={tickerNews.image_url} alt="News Article" />
+    <div className="border border-orange-400 rounded-2xl p-2 my-2 shadow-lg">
+      <div>
+        <img
+          src={tickerNews.image_url}
+          alt="News Article"
+          className="rounded-lg"
+        />
       </div>
       <h2>
-        <a href={tickerNews.article_url}>{tickerNews.title}</a>
+        <a
+          className="hover:text-blue-500 hover:underline"
+          href={tickerNews.article_url}
+        >
+          {tickerNews.title}
+        </a>
       </h2>
-      <p>Source: {tickerNews.publisher.name}</p>
-      <p>Related stocks: </p>
+      <p className="text-xs py-2">
+        Source: <br /> {tickerNews.publisher.name}
+      </p>
+      <p className="text-xs">Related stocks: </p>
       <div className="relatedTickers gap-2">{relatedTickers}</div>
     </div>
   );

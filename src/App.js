@@ -16,7 +16,7 @@ function App() {
   return (
     <div className="App">
       <NavBar />
-      <div className="appContent w-10/12 h-screen mx-auto bg-slate-50 overflow-scroll pt-9">
+      <div className="appContent w-10/12 h-screen mx-auto bg-slate-50 overflow-hidden pt-9">
         <Routes>
           <Route path="/" element={<Home />}>
             <Route path="/" element={<SearchBar />} />

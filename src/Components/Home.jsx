@@ -93,7 +93,7 @@ function Home() {
   }
 
   return (
-    <div className="h-full w-full">
+    <div className="h-full w-full overflow-scroll">
       <Outlet context={[allData, setAllData]} />
     </div>
   );
