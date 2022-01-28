@@ -265,66 +265,68 @@ function SearchResult() {
   }
 
   return (
-    <div
-      id="SearchResult"
-      className="w-10/12 mx-auto py-2 justify-around flex h-full"
-    >
-      <div className="w-8/12">
-        <div id="StockInfo" className="p-2 h-5/6">
-          <BigInfoCard data={stock} key={stock.tickerDetails.ticker} />
+    <>
+      <div className="w-full flex mx-auto justify-center">
+        <button
+          onClick={showAddToWatchlistScreen}
+          className="py-1 m-2 w-48 text-center text-slate-700 bg-slate-100 border-2 border-slate-300 hover:bg-orange-400 hover:font-extrabold hover:text-white rounded-full"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6 mx-2 inline"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"
+            />
+          </svg>
+          Add to Watchlist
+        </button>
+        <button
+          onClick={showAddToPortfolioScreen}
+          className="py-1 m-2 w-48 text-center text-slate-700 bg-slate-100 border-2 border-slate-300 hover:bg-orange-400 hover:font-extrabold hover:text-white rounded-full"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6 inline mx-2"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+            />
+          </svg>
+          Add to Portfolio
+        </button>
+      </div>
+      <div
+        id="SearchResult"
+        className="w-10/12 mx-auto py-2 justify-around block md:flex h-full"
+      >
+        <div className="w-full md:w-8/12">
+          <div id="StockInfo" className="p-2 h-5/6">
+            <BigInfoCard data={stock} key={stock.tickerDetails.ticker} />
+          </div>
         </div>
-        <div className="pb-3">
-          <button
-            onClick={showAddToWatchlistScreen}
-            className="py-1 m-2 w-48 text-center text-slate-700 bg-slate-100 border-2 border-slate-300 hover:bg-orange-400 hover:font-extrabold hover:text-white rounded-full"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 mx-2 inline"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"
-              />
-            </svg>
-            Add to Watchlist
-          </button>
-          <button
-            onClick={showAddToPortfolioScreen}
-            className="py-1 m-2 w-48 text-center text-slate-700 bg-slate-100 border-2 border-slate-300 hover:bg-orange-400 hover:font-extrabold hover:text-white rounded-full"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 inline mx-2"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-              />
-            </svg>
-            Add to Portfolio
-          </button>
+        <div className="w-full md:w-4/12">
+          <h2 className="font-extrabold text-orange-400 text-xl p-1">
+            Related News
+          </h2>
+          <div id="news" className="p-2 h-5/6 overflow-scroll">
+            {newsCards}
+          </div>
         </div>
       </div>
-      <div className="w-4/12">
-        <h2 className="font-extrabold text-orange-400 text-xl p-1">
-          Related News
-        </h2>
-        <div id="news" className="p-2 h-5/6 overflow-scroll">
-          {newsCards}
-        </div>
-      </div>
-    </div>
+    </>
   );
 }
 
