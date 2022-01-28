@@ -3,7 +3,7 @@ function ConfirmRemove(props) {
 
   return (
     <div className="border-orange-400 border w-1/2 mx-auto mt-5 rounded-2xl shadow-lg bg-white p-3">
-      <h2 className="font-extrabold text-orange-400 text-3xl pb-2">
+      <h2 className="font-extrabold text-orange-400 text-xl md:text-3xl pb-2">
         Confirmation
       </h2>
       <div className="p-2">

@@ -26,7 +26,7 @@ function AmendPortfolio(props) {
 
   return (
     <div className="border-orange-400 border w-4/5 mx-auto mt-5 rounded-2xl shadow-lg bg-white">
-      <h2 className="font-extrabold text-orange-400 text-3xl pb-2">
+      <h2 className="font-extrabold text-orange-400 text-xl md:text-3xl pb-2">
         Amend Portfolio
       </h2>
       <table className="mx-auto w-full table-auto">
