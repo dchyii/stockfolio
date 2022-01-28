@@ -82,7 +82,7 @@ function PortfolioTable(props) {
             id={i}
             onClick={(event) => props.fnShowAmendScreen(event)}
             xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5 mx-auto"
+            className="h-3 m-3 sm:h-5 sm:w-5 mx-auto"
             viewBox="0 0 20 20"
             fill="currentColor"
           >
@@ -103,7 +103,7 @@ function PortfolioTable(props) {
             id={i}
             onClick={(event) => props.fnShowRemoveConfirmationScreen(event)}
             xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5 mx-auto"
+            className="h-3 m-3 sm:h-5 sm:w-5 mx-auto"
             viewBox="0 0 20 20"
             fill="currentColor"
           >
@@ -120,7 +120,7 @@ function PortfolioTable(props) {
   });
 
   return (
-    <table className="w-10/12 mx-auto table-auto border border-orange-400 border-collapse">
+    <table className="w-10/12 mx-auto table-auto border border-orange-400 border-collapse text-xs md:text-sm lg:text-base">
       <thead>
         <tr className=" border-b-2 border-orange-400">
           {header}
