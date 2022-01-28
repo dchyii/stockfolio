@@ -4,9 +4,15 @@ import { Link } from "react-router-dom";
 function NavBar() {
   const [hamburgerMenu, setHamburgerMenu] = useState(false);
 
+  const iconX = "M6 18L18 6M6 6l12 12";
+  const iconHamburger = "M4 6h16M4 12h16M4 18h16";
+
   return (
     <>
-      <div id="NavBarBackground" className="bg-gray-800 fixed w-full top-0">
+      <div
+        id="NavBarBackground"
+        className="bg-gray-800 fixed w-full top-0 z-30"
+      >
         <nav
           id="NavBar"
           className="w-full md:w-10/12 h-9 mx-auto px-5 text-slate-100 flex justify-between items-center"
@@ -71,7 +77,7 @@ function NavBar() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M4 6h16M4 12h16M4 18h16"
+                    d={hamburgerMenu ? iconX : iconHamburger}
                   />
                 </svg>
               </button>
