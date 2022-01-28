@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import dayjs from "dayjs";
-import allPriceData from "../Data/allPriceData";
 import watchlistStocks from "../Data/watchlistStocks";
-import SearchBar from "./SearchBar";
 import portfolioStocks from "../Data/portfolioStocks";
 import LoadScreen from "./LoadScreen";
 import ErrorScreen from "./ErrorScreen";

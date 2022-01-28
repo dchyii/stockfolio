@@ -1,6 +1,6 @@
 import { useState } from "react";
 import SearchBar from "./SearchBar";
-import { Outlet, useOutletContext } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 import PortfolioTable from "./PortfolioTable";
 import ConfirmRemove from "./ConfirmRemove";
 import AmendPortfolio from "./AmendPortfolio";

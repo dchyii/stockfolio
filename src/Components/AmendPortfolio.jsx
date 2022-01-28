@@ -1,5 +1,4 @@
 import { useRef } from "react";
-import NumberFormat from "react-number-format";
 
 function AmendPortfolio(props) {
   const purchaseUnitsRef = useRef();
