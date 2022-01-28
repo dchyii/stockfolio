@@ -114,16 +114,18 @@ function WatchlistTable(props) {
   });
 
   return (
-    <table className="w-10/12 mx-auto table-auto border border-orange-400 border-collapse text-xs md:text-sm lg:text-base">
-      <thead>
-        <tr className=" border-b-2 border-orange-400">
-          {header}
-          <th> </th>
-          <th> </th>
-        </tr>
-      </thead>
-      <tbody>{data}</tbody>
-    </table>
+    <div className="w-full overflow-scroll">
+      <table className="w-10/12 mx-auto table-auto border border-orange-400 border-collapse text-xs md:text-sm lg:text-base">
+        <thead>
+          <tr className=" border-b-2 border-orange-400">
+            {header}
+            <th> </th>
+            <th> </th>
+          </tr>
+        </thead>
+        <tbody>{data}</tbody>
+      </table>
+    </div>
   );
 }
 
