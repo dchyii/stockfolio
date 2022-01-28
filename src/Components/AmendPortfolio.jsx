@@ -25,7 +25,7 @@ function AmendPortfolio(props) {
   };
 
   return (
-    <div className="border-orange-400 border w-4/5 mx-auto mt-5 rounded-2xl shadow-lg bg-white">
+    <div className="border-orange-400 border w-4/5 lg:w-1/2 mx-auto mt-5 rounded-2xl shadow-lg bg-white">
       <h2 className="font-extrabold text-orange-400 text-xl md:text-3xl pb-2">
         Amend Portfolio
       </h2>
@@ -101,19 +101,21 @@ function AmendPortfolio(props) {
           </tr>
         </tbody>
       </table>
-      <div id="buttons" className="flex justify-around p-3">
-        <button
-          onClick={props.fnCancel}
-          className="py-1 w-24 text-white bg-gray-300 hover:bg-gray-500 rounded-full"
-        >
-          Cancel
-        </button>
-        <button
-          onClick={amendData}
-          className="py-1 w-24 text-white bg-green-300 hover:bg-green-500 hover:font-extrabold  rounded-full"
-        >
-          Update
-        </button>
+      <div className="w-10/12 md:w-1/2 mx-auto">
+        <div id="buttons" className="flex justify-around p-3">
+          <button
+            onClick={props.fnCancel}
+            className="py-1 w-24 text-white bg-gray-300 hover:bg-gray-500 rounded-full"
+          >
+            Cancel
+          </button>
+          <button
+            onClick={amendData}
+            className="py-1 w-24 text-white bg-green-300 hover:bg-green-500 hover:font-extrabold  rounded-full"
+          >
+            Update
+          </button>
+        </div>
       </div>
     </div>
   );
