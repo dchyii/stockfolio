@@ -18,9 +18,10 @@ function Home() {
 
   const [loadStatus, setLoadStatus] = useState("loading");
 
-  console.log("allData", allData);
+  // console.log("allData", allData);
 
   let fetchDate = dayjs();
+  // console.log("dayjs", fetchDate.get("day"));
 
   const fetchPriceData = () => {
     setLoadStatus("loading");
@@ -30,7 +31,9 @@ function Home() {
       fetchPriceData();
     } else {
       //! vvv uncomment on production vvv !//
-      let formattedFetchDate = fetchDate.format("YYYY-MM-DD");
+      let formattedFetchDate = fetchDate
+        .subtract(1, "day")
+        .format("YYYY-MM-DD");
       let urlPreviousDayClose = `https://api.polygon.io/v2/aggs/grouped/locale/us/market/stocks/${formattedFetchDate}?adjusted=true&apiKey=${KEY}`;
       console.log("fetching price data", formattedFetchDate);
       fetch(urlPreviousDayClose)
