@@ -53,7 +53,7 @@ function Home() {
             console.log("price data fetched");
             setAllData({
               ...allData,
-              date: fetchDate,
+              date: fetchDate.subtract(1, "day"),
               prevClosePrices: data.results,
             });
             setLoadStatus("loaded");
